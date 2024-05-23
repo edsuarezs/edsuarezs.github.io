@@ -131,6 +131,5 @@ dist
 
 # media files
 *.jpg
-*.png
 .jpg
 .png
