@@ -34,8 +34,8 @@ $(function() {
 				scrollwheel: params.scrollwheel,
 				streetViewControl: params.streetViewControl,
 				overviewMapControl: params.overviewMapControl,
-				mapTypeControl: params.mapTypeControl
-
+				mapTypeControl: params.mapTypeControl,
+				mapId: 'DEMO_MAP_ID' // Required for AdvancedMarkerElement
 			});
 
 			$(this).data('googleMap', map);
@@ -94,30 +94,32 @@ $(function() {
 							$that.data('googleBound').extend(results[0].geometry.location);
 
 							if(params.icon) {
-								var marker = new google.maps.Marker({
+								var iconImg = document.createElement('img');
+								iconImg.src = params.icon;
+								var marker = new google.maps.marker.AdvancedMarkerElement({
 									map: $this.data('googleMap'),
 									position: results[0].geometry.location,
 									title: params.title,
-									icon: params.icon,
-									draggable: params.draggable
+									content: iconImg,
+									gmpDraggable: params.draggable
 								});
 							} else {
-								var marker = new google.maps.Marker({
+								var marker = new google.maps.marker.AdvancedMarkerElement({
 									map: $that.data('googleMap'),
 									position: results[0].geometry.location,
 									title: params.title,
-									draggable: params.draggable
+									gmpDraggable: params.draggable
 								});
 							}
 
 							if(params.draggable) {
-								google.maps.event.addListener(marker, 'dragend', function() {
-									var location = marker.getPosition();
+								marker.addListener('dragend', function() {
+									var location = marker.position;
 
 									var coords = {};
 
-									coords.lat = location.lat();
-									coords.lon = location.lng();
+									coords.lat = location.lat;
+									coords.lon = location.lng;
 
 									params.success(coords, $this);
 								});
@@ -130,11 +132,11 @@ $(function() {
 
 								var map = $that.data('googleMap');
 
-								google.maps.event.addListener(marker, 'click', function() {
+								marker.addListener('click', function() {
 									infowindow.open(map, marker);
 								});
 							} else if(params.url) {
-								google.maps.event.addListener(marker, 'click', function() {
+								marker.addListener('click', function() {
 									document.location = params.url;
 								});
 							}
@@ -168,19 +170,21 @@ $(function() {
 				$this.data('googleBound').extend(new google.maps.LatLng(params.coords[0], params.coords[1]));
 
         			if(params.icon) {
-					var marker = new google.maps.Marker({
+					var iconImg = document.createElement('img');
+					iconImg.src = params.icon;
+					var marker = new google.maps.marker.AdvancedMarkerElement({
 						map: $this.data('googleMap'),
 						position: new google.maps.LatLng(params.coords[0], params.coords[1]),
 						title: params.title,
-						icon: params.icon,
-						draggable: params.draggable
+						content: iconImg,
+						gmpDraggable: params.draggable
 					});
 				} else {
-					var marker = new google.maps.Marker({
+					var marker = new google.maps.marker.AdvancedMarkerElement({
 						map: $this.data('googleMap'),
 						position: new google.maps.LatLng(params.coords[0], params.coords[1]),
 						title: params.title,
-						draggable: params.draggable
+						gmpDraggable: params.draggable
 					});
 				}
 
@@ -191,23 +195,23 @@ $(function() {
 
 					var map = $this.data('googleMap');
 
-	        			google.maps.event.addListener(marker, 'click', function() {
+	        			marker.addListener('click', function() {
 		        			infowindow.open(map, marker);
 	        			});
 				} else if(params.url) {
-          				google.maps.event.addListener(marker, 'click', function() {
+          				marker.addListener('click', function() {
               					document.location = params.url;
         				});
 				}
 
 				if(params.draggable) {
-					google.maps.event.addListener(marker, 'dragend', function() {
-						var location = marker.getPosition();
+					marker.addListener('dragend', function() {
+						var location = marker.position;
 
 						var coords = {};
 
-						coords.lat = location.lat();
-						coords.lon = location.lng();
+						coords.lat = location.lat;
+						coords.lon = location.lng;
 
 						params.success(coords, $this);
 					});
@@ -250,7 +254,7 @@ $(function() {
     			var $markers = $this.data('googleMarker');
 
     			if(typeof $markers[id] != 'undefined') {
-    				$markers[id].setMap(null);
+    				$markers[id].map = null;
     				
       				if($this.data('googleDebug'))
       					console.log('jQuery googleMap : marker deleted');

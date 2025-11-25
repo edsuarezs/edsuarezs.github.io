@@ -45,15 +45,19 @@
 
     $("#contact_form").on("submit", function (e) {
       if (!e.isDefaultPrevented()) {
-        var url = "contact_form/contact_form.php";
+        var url = $(this).attr('action');
 
         $.ajax({
           type: "POST",
           url: url,
           data: $(this).serialize(),
+          dataType: "json",
+          headers: {
+            'Accept': 'application/json'
+          },
           success: function (data) {
-            var messageAlert = "alert-" + data.type;
-            var messageText = data.message;
+            var messageAlert = "alert-success";
+            var messageText = "Contact form successfully submitted. Thank you, I will get back to you soon!";
 
             var alertBox =
               '<div class="alert ' +
@@ -61,11 +65,23 @@
               ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
               messageText +
               "</div>";
-            if (messageAlert && messageText) {
-              $("#contact_form").find(".messages").html(alertBox);
-              $("#contact_form")[0].reset();
-            }
+            
+            $("#contact_form").find(".messages").html(alertBox);
+            $("#contact_form")[0].reset();
           },
+          error: function (err) {
+            var messageAlert = "alert-danger";
+            var messageText = "There was an error while submitting the form. Please try again later.";
+
+            var alertBox =
+              '<div class="alert ' +
+              messageAlert +
+              ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+              messageText +
+              "</div>";
+
+            $("#contact_form").find(".messages").html(alertBox);
+          }
         });
         return false;
       }
@@ -280,12 +296,17 @@
       },
     });
 
-    //Google Maps
-    $("#map").googleMap({
-      zoom: 12, // Google Map ZOOM. You can change this value
-    });
-    $("#map").addMarker({
-      address: "Medellín, Antioquia, Colombia", // Your Address. Change it
-    });
   });
+
+  //Google Maps
+  window.initMap = function() {
+    $(function() {
+      $("#map").googleMap({
+        zoom: 12, // Google Map ZOOM. You can change this value
+      });
+      $("#map").addMarker({
+        address: "Medellín, Antioquia, Colombia", // Your Address. Change it
+      });
+    });
+  };
 })(jQuery);
