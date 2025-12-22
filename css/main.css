@@ -2702,6 +2702,17 @@ blockquote {
 9. Pricing
 ============================================================================= */
 /* Pricing */
+/* Asegura que las cajas de precios tengan la misma altura */
+.fw-pricing.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fw-package-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
 .fw-pricing .fw-package {
   background-color: #333;
   border: 2px solid #444;
@@ -2714,6 +2725,11 @@ blockquote {
   -o-transition: all 0.2s ease-in-out;
   -ms-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
+  /* Flexbox para altura igual */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .fw-pricing .fw-package-wrap.highlight-col .fw-package {
