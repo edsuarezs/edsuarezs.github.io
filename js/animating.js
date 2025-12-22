@@ -52,7 +52,7 @@ var PageTransitions = (function ($, options) {
 
             Animate( pageTrigger );
 
-            location.hash = $(this).attr('href');
+            // location.hash = $(this).attr('href');
 
         });
 
@@ -72,8 +72,8 @@ var PageTransitions = (function ($, options) {
         var menu = options.menu,
         pageStart = getActiveSection();
 
-        location.hash = pageStart;
-        var menuLink = $(menu+' a[href*="'+location.hash.split('/')[0]+'"]');
+        // location.hash = pageStart;
+        var menuLink = $(menu+' a[href*="'+pageStart.replace("#", "")+'"]');
 
         activeMenuItem(menuLink);
 
@@ -100,11 +100,14 @@ var PageTransitions = (function ($, options) {
     }
 
     function getActiveSection() {
-        if(location.hash === "") {
-            return location.hash = $('section.animated-section').first().attr('data-id');
+        var hash = location.hash;
+        var sectionId = hash.replace("#", "");
+
+        if(hash === "" || $('section[data-id="' + sectionId + '"]').length === 0) {
+            return $('section.animated-section').first().attr('data-id');
         } 
         else {
-            return location.hash;
+            return hash;
         }
     }
 
