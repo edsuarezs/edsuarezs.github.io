@@ -1,0 +1,160 @@
+/* ========================================
+   PORTFOLIO CARDS - HORIZONTAL LAYOUT
+   Based on reference design
+   ======================================== */
+
+/* CRITICAL: Override Shuffle.js container collapse */
+.portfolio-grid.project-cards {
+  height: auto !important;
+  overflow: visible !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/* CSS-based filtering system */
+.portfolio-grid.project-cards .project-card {
+  display: block;
+}
+
+/* Hide all items when a specific filter is active (not "All") */
+.portfolio-content:has(.portfolio-filters li.active[data-filter="category_infrastructure"]) .portfolio-grid .project-card:not([data-groups*="category_infrastructure"]),
+.portfolio-content:has(.portfolio-filters li.active[data-filter="category_observability"]) .portfolio-grid .project-card:not([data-groups*="category_observability"]),
+.portfolio-content:has(.portfolio-filters li.active[data-filter="category_resilience"]) .portfolio-grid .project-card:not([data-groups*="category_resilience"]) {
+  display: none;
+}
+
+/* Override the default figure styles */
+.portfolio-grid.project-cards .project-card {
+  width: 100%;
+  margin: 0;
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.portfolio-grid.project-cards .project-card:nth-child(2n) {
+  margin-right: 0;
+}
+
+.portfolio-grid.project-cards .project-card:hover {
+  border-color: #4a90e2;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Inner flex container for horizontal layout */
+.project-card-inner {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+/* Icon section - left side */
+.project-card-icon-section {
+  width: 150px;
+  min-width: 150px;
+  background: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  gap: 15px;
+}
+
+.project-card-icon {
+  font-size: 48px;
+  color: #4a90e2;
+}
+
+/* Content section - right side */
+.project-card-content-section {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Title */
+.project-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Tech stack line */
+.project-card-tech {
+  font-size: 13px;
+  color: #4a90e2;
+  font-weight: 500;
+}
+
+/* Description */
+.project-card-description {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #a0a0a0;
+  margin: 0;
+}
+
+/* Category badge - now inside icon section */
+.project-card-category {
+  padding: 4px 12px;
+  background: rgba(74, 144, 226, 0.2);
+  border: 1px solid rgba(74, 144, 226, 0.4);
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #4a90e2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* Link overlay */
+.project-card-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+/* Responsive - mobile */
+@media (max-width: 768px) {
+  .portfolio-grid.project-cards {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+  
+  .portfolio-grid.project-cards .project-card {
+    width: 100% !important;
+    margin: 0;
+  }
+  
+  .project-card-inner {
+    flex-direction: column;
+  }
+  
+  .project-card-icon-section {
+    width: 100%;
+    min-width: auto;
+    padding: 40px;
+  }
+  
+  .project-card-content-section {
+    padding: 20px;
+  }
+}
+
