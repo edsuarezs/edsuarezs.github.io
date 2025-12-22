@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // https://github.com/rafrex/spa-github-pages
+      // This script checks if a redirect is present in the query string and converts it back into a path
+      // that the SPA routing can understand.
+      var pathSegmentsToKeep = 0;
+
+      var l = window.location;
+      console.log('404 Path detected:', l.pathname);
+      var redirectUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?p=' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash;
+      console.log('Redirecting to:', redirectUrl);
+      l.replace(redirectUrl);
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

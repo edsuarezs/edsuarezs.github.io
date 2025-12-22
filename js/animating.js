@@ -47,13 +47,13 @@ var PageTransitions = (function ($, options) {
                 return false;
             }
             var pageTrigger = $(this);
+            var targetSection = pageTrigger.attr('href').replace('#', '');
 
             activeMenuItem( pageTrigger );
-
             Animate( pageTrigger );
 
-            // location.hash = $(this).attr('href');
-
+            // Don't change URL when navigating between sections
+            // Removed history.pushState() to keep URL clean
         });
 
         window.onhashchange = function(event) {
@@ -64,8 +64,6 @@ var PageTransitions = (function ($, options) {
                 var menuLink = $(menu+' a[href*="'+location.hash.split('/')[0]+'"]');
                 activeMenuItem( menuLink );
                 Animate(menuLink);
-
-                ajaxLoader();
             }
         };
 
@@ -101,13 +99,19 @@ var PageTransitions = (function ($, options) {
 
     function getActiveSection() {
         var hash = location.hash;
+        var path = location.pathname;
         var sectionId = hash.replace("#", "");
 
-        if(hash === "" || $('section[data-id="' + sectionId + '"]').length === 0) {
-            return $('section.animated-section').first().attr('data-id');
+        // Try to get section from path if no hash
+        if (!sectionId) {
+            sectionId = path.substring(path.lastIndexOf('/') + 1);
+        }
+
+        if((sectionId === "" || $('section[data-id="' + sectionId + '"]').length === 0)) {
+            return 'home';
         } 
         else {
-            return hash;
+            return sectionId;
         }
     }
 
@@ -126,8 +130,8 @@ var PageTransitions = (function ($, options) {
         }
     }
 
+    var ajaxLoaderInitialized = false;
     function ajaxLoader() {
-        // Check for hash value in URL
         var ajaxLoadedContent = $('#page-ajax-loaded');
 
         function showContent() {
@@ -145,29 +149,37 @@ var PageTransitions = (function ($, options) {
             }, 500);
         }
 
-        var href = $('.ajax-page-load').each(function(){
-            href = $(this).attr('href');
-            if(location.hash == location.hash.split('/')[0] + '/' + href.substr(0,href.length-5)){
-                var toLoad =  $(this).attr('href');
-                showContent();
-                ajaxLoadedContent.load(toLoad);
-                return false;
-            }
-        });
+        function loadProject(href) {
+            showContent();
+            ajaxLoadedContent.load(href);
+        }
+
+        // Deep linking removed - portfolio details no longer change URL
+
+        if (ajaxLoaderInitialized) return;
+        ajaxLoaderInitialized = true;
 
         $(document)
-            .on("click",".main-menu, #ajax-page-close-button", function (e) { // Hide Ajax Loaded Page on Navigation cleck and Close button
+            .on("click",".main-menu, #ajax-page-close-button", function (e) {
                 e.preventDefault();
+                e.stopImmediatePropagation();
                 hideContent();
-                location.hash = location.hash.split('/')[0];
+                // Don't manipulate browser history when closing
             })
-            .on("click",".ajax-page-load", function () { // Show Ajax Loaded Page
-                var hash = location.hash.split('/')[0] + '/' + $(this).attr('href').substr(0,$(this).attr('href').length-5);
-                location.hash = hash;
-                showContent();
+            .on("click",".ajax-page-load", function (e) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                
+                var toLoad = $(this).attr('href');
+                loadProject(toLoad);
+
+                // Don't change the URL when opening portfolio details
+                // Removed history.pushState() to keep URL unchanged
 
                 return false;
             });
+
+        // Popstate handling removed - portfolio details no longer change URL
     }
 
     function Animate($pageTrigger, gotoPage) {

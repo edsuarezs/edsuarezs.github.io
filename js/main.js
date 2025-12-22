@@ -290,6 +290,26 @@
       },
     });
 
+    // Portfolio Filtering
+    var $portfolio_container = $(".portfolio-grid");
+    $portfolio_container.imagesLoaded(function () {
+      $portfolio_container.shuffle({
+        speed: 450,
+        itemSelector: "figure",
+      });
+    });
+
+    $(".portfolio-filters").on("click", ".filter", function (e) {
+      $portfolio_container.shuffle("shuffle", $(this).attr("data-group"));
+      e.preventDefault();
+    });
+
+    $(".portfolio-filters").on("click", "li", function (e) {
+      $(".portfolio-filters li").removeClass("active");
+      $(this).addClass("active");
+    });
+
+
   });
 
   //Google Maps
