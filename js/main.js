@@ -56,36 +56,30 @@
             'Accept': 'application/json'
           },
           success: function (data) {
-            var messageAlert = "alert-success";
-            var messageText = "Contact form successfully submitted. Thank you, I will get back to you soon!";
-
-            var alertBox =
-              '<div class="alert ' +
-              messageAlert +
-              ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
-              messageText +
-              "</div>";
-            
-            $("#contact_form").find(".messages").html(alertBox);
+            $("#contact-popup").css("display", "flex").removeClass("popup-error").addClass("popup-success");
+            $("#popup-title").text("Message Sent!");
+            $("#popup-message").text("Thanks for reaching out! I'll get back to you soon.");
             $("#contact_form")[0].reset();
           },
           error: function (err) {
-            var messageAlert = "alert-danger";
-            var messageText = "There was an error while submitting the form. Please try again later.";
-
-            var alertBox =
-              '<div class="alert ' +
-              messageAlert +
-              ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
-              messageText +
-              "</div>";
-
-            $("#contact_form").find(".messages").html(alertBox);
+            $("#contact-popup").css("display", "flex").removeClass("popup-success").addClass("popup-error");
+            $("#popup-title").text("Error Sending");
+            $("#popup-message").text("Oops! Something went wrong. Please try again later.");
           }
         });
         return false;
       }
     });
+
+    // Close popup logic
+    $(".contact-popup-close, #contact-popup").on("click", function(e) {
+        if (e.target !== this && !$(e.target).hasClass("contact-popup-close")) return;
+        $("#contact-popup").fadeOut();
+    });
+    $(".contact-popup-content").on("click", function(e) {
+        e.stopPropagation();
+    });
+
   });
   // /Contact form validator
 
