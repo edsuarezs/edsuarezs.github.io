@@ -3025,3 +3025,71 @@ blockquote {
     font-size: 18px;
   }
 }
+
+/* --- Portfolio (Decoupled from Certificates) --- */
+.portfolio-item {
+    position: relative;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    border: 2px solid #444;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    -webkit-transition: all 2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.portfolio-item:hover {
+    -webkit-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    -o-transform: translateY(-5px);
+    transform: translateY(-5px);
+    -webkit-box-shadow: 0 12px 17px rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0 12px 17px rgba(0, 0, 0, 0.12);
+    -o-box-shadow: 0 12px 17px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 17px rgba(0, 0, 0, 0.12);
+}
+
+.portfolio-logo {
+    display: table-cell;
+    width: 120px;
+    height: 100%;
+    background-color: #444;
+    padding: 25px;
+    vertical-align: middle;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.portfolio-logo img {
+    display: block;
+    max-width: 100%;
+}
+
+.portfolio-content {
+    display: table-cell;
+    width: 100%;
+    padding: 20px 25px;
+    vertical-align: middle;
+}
+
+.portfolio-title h4 {
+    font-size: 16px;
+    margin: 0 0 5px;
+}
+
+.portfolio-date {
+    font-size: 13px;
+    color: #bbb;
+}
+
+.portfolio-company {
+    display: block;
+    margin: 5px 0 0;
+    font-size: 13px;
+    color: #aaa;
+}
+/* --- End Portfolio --- */
