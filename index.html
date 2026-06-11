@@ -1,1211 +1,829 @@
-﻿<!DOCTYPE html>
-<html lang="en" class="no-js">
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Edward Suarez | Senior DevSecOps Engineer & Cloud Architect</title>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1"
-    />
-    <meta
-      name="description"
-      content="Senior DevSecOps Engineer specializing in AWS, OpenShift, and Chaos Engineering. View my portfolio, projects, and expertise in reducing deployment times and boosting compliance."
-    />
-    <meta
-      name="keywords"
-      content="Edward Suarez, DevSecOps, SRE, Cloud Architect, AWS, OpenShift, Golang, Chaos Engineering, Terraform, Kubernetes, Backend Developer, Portfolio"
-    />
+    <meta name="description" content="Senior DevSecOps Engineer specializing in AWS, OpenShift, and Chaos Engineering. View my portfolio, projects, and expertise in reducing deployment times and boosting compliance." />
+    <meta name="keywords" content="Edward Suarez, DevSecOps, SRE, Cloud Architect, AWS, OpenShift, Golang, Chaos Engineering, Terraform, Kubernetes, Backend Developer, Portfolio" />
     <meta name="author" content="Edward Suarez" />
-    
-    <!-- Open Graph / Facebook -->
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://edsuarezs.github.io/" />
     <meta property="og:title" content="Edward Suarez | Senior DevSecOps Engineer & Cloud Architect" />
     <meta property="og:description" content="Senior DevSecOps Engineer specializing in AWS, OpenShift, and Chaos Engineering. View my portfolio, projects, and expertise in reducing deployment times and boosting compliance." />
     <meta property="og:image" content="https://edsuarezs.github.io/assets/images/main_photo.webp" />
-    
-    <!-- Twitter -->
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://edsuarezs.github.io/" />
     <meta name="twitter:title" content="Edward Suarez | Senior DevSecOps Engineer & Cloud Architect" />
     <meta name="twitter:description" content="Senior DevSecOps Engineer specializing in AWS, OpenShift, and Chaos Engineering. View my portfolio, projects, and expertise." />
     <meta name="twitter:image" content="https://edsuarezs.github.io/assets/images/main_photo.webp" />
     <meta name="twitter:creator" content="@edsuarezs" />
-    
+
     <link rel="shortcut icon" href="favicon.ico" />
 
-    <link rel="stylesheet" href="css/reset.css" type="text/css" />
-    <link rel="stylesheet" href="css/bootstrap-grid.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/animations.css" type="text/css" />
-    <link rel="stylesheet" href="css/perfect-scrollbar.css" type="text/css" />
-    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css" />
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
-    <link rel="stylesheet" href="css/main.css" type="text/css" />
-    <link rel="stylesheet" href="css/portfolio-cards.css" type="text/css" />
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Google tag (gtag.js) -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2ETD48KMJE"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-2ETD48KMJE');
     </script>
 
-    <script type="text/javascript">
+    <!-- GitHub Pages SPA redirect -->
+    <script>
       (function(l) {
         if (l.search[1] === 'p') {
-          console.log('SPA Redirect parameter detected in URL');
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&') 
+          var decoded = l.search.slice(1).split('&').map(function(s) {
+            return s.replace(/~and~/g, '&');
           }).filter(function(v) {
             return v.indexOf('p=') === 0;
           })[0].split('=')[1];
-
           if (decoded !== l.pathname) {
             var base = l.pathname.replace(/\/$/, '');
             var target = decoded.startsWith('/') ? decoded : '/' + decoded;
-            var finalUrl = base + target + (l.hash || '');
-            console.log('Cleaning URL to:', finalUrl);
-            window.history.replaceState(null, null, finalUrl);
+            window.history.replaceState(null, null, base + target + (l.hash || ''));
           }
         }
       }(window.location));
     </script>
-
   </head>
 
   <body>
-    <!-- Animated Background -->
-    <div
-      class="lm-animated-bg"
-      style="background-image: url(assets/images/main_bg.webp)"
-    ></div>
-    <!-- /Animated Background -->
-
-    <!-- Loading animation -->
-    <div class="preloader">
-      <div class="preloader-animation">
-        <div class="preloader-spinner"></div>
-      </div>
+    <!-- Preloader -->
+    <div class="preloader" role="status" aria-label="Loading">
+      <div class="preloader-ring"></div>
     </div>
-    <!-- /Loading animation -->
 
-    <div class="page">
-      <div class="page-content">
-        <header id="site_header" class="header mobile-menu-hide">
-          <div class="header-content">
-            <div class="header-photo">
-              <img src="assets/images/main_photo.webp" alt="Edward Suarez" />
+    <!-- Navigation -->
+    <header class="site-header" role="banner">
+      <nav class="nav container" aria-label="Main navigation">
+        <a class="nav-logo" href="#hero" aria-label="Edward Suarez — Back to top">ES</a>
+        <ul class="nav-links" role="list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="/assets/EdwardSuarezResume.pdf" target="_blank" rel="noopener" class="btn btn-sm btn-outline nav-cta" aria-label="Download CV PDF">Download CV</a>
+        <button class="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Mobile nav -->
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+      <a href="#about">About</a>
+      <a href="#resume">Resume</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="/assets/EdwardSuarezResume.pdf" target="_blank" rel="noopener">Download CV ↗</a>
+    </nav>
+
+    <main>
+      <!-- ── Hero ──────────────────────────────────────── -->
+      <section id="hero" class="hero section" aria-label="Introduction">
+        <div class="container">
+          <div class="hero-inner">
+            <div class="hero-text">
+              <p class="hero-greeting">Hello, I'm</p>
+              <h1 class="hero-name">Edward Suarez</h1>
+              <div class="hero-role-wrap" aria-live="polite" aria-atomic="true">
+                <span class="hero-role" id="hero-role">Senior DevSecOps Engineer</span>
+              </div>
+              <p class="hero-tagline">Cloud Architect &nbsp;·&nbsp; Backend Developer (Go) &nbsp;·&nbsp; SRE</p>
+              <div class="hero-actions">
+                <a href="https://calendar.app.google/gTt3SHVnkYdTsYgC8" target="_blank" rel="noopener" class="btn btn-primary">Book a Call</a>
+                <a href="/assets/EdwardSuarezResume.pdf" target="_blank" rel="noopener" class="btn btn-outline">Download CV</a>
+              </div>
+              <div class="hero-social">
+                <a href="https://www.linkedin.com/in/edsuarezs/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                </a>
+                <a href="https://github.com/edsuarezs" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                  <i class="fab fa-github" aria-hidden="true"></i>
+                </a>
+                <a href="https://twitter.com/edsuarezs" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                  <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+              </div>
             </div>
-            <div class="header-titles">
-              <h2>Edward Suarez</h2>
-              <h4>Senior DevSecOps Engineer</h4>
+
+            <div class="hero-photo">
+              <div class="hero-photo-wrap">
+                <div class="hero-photo-ring" aria-hidden="true"></div>
+                <div class="hero-photo-ring-2" aria-hidden="true"></div>
+                <img
+                  src="assets/images/main_photo.webp"
+                  alt="Edward Suarez, Senior DevSecOps Engineer based in Medellín, Colombia"
+                  class="hero-photo-img"
+                  width="300" height="300"
+                />
+              </div>
             </div>
-          </div>
-
-          <ul class="main-menu">
-            <li class="active">
-              <a href="#home" class="nav-anim">
-                <span class="menu-icon lnr lnr-home"></span>
-                <span class="link-text">Home</span>
-              </a>
-            </li>
-            <li>
-              <a href="#about-me" class="nav-anim">
-                <span class="menu-icon lnr lnr-user"></span>
-                <span class="link-text">About Me</span>
-              </a>
-            </li>
-            <li>
-              <a href="#resume" class="nav-anim">
-                <span class="menu-icon lnr lnr-graduation-hat"></span>
-                <span class="link-text">Resume</span>
-              </a>
-            </li>
-            <li>
-              <a href="#portfolio" class="nav-anim">
-                <span class="menu-icon lnr lnr-briefcase"></span>
-                <span class="link-text">Projects</span>
-              </a>
-            </li>
-            <li>
-              <a href="#contact" class="nav-anim">
-                <span class="menu-icon lnr lnr-envelope"></span>
-                <span class="link-text">Contact</span>
-              </a>
-            </li>
-          </ul>
-
-          <div class="social-links">
-            <ul>
-              <li>
-                <a href="https://www.linkedin.com/in/edsuarezs/" target="_blank" aria-label="LinkedIn"
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
-              </li>
-              <li>
-                <a href="https://github.com/edsuarezs" target="_blank" aria-label="GitHub"
-                  ><i class="fab fa-github"></i
-                ></a>
-              </li>
-              <li>
-                <a href="https://twitter.com/edsuarezs" target="_blank" aria-label="Twitter"
-                  ><i class="fab fa-twitter"></i
-                ></a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="header-buttons">
-            <a
-              href="/assets/EdwardSuarezResume.pdf"
-              target="_blank"
-              class="btn btn-primary"
-              >Download CV</a
-            >
-          </div>
-
-          <div class="copyrights">© 2025 All rights reserved.</div>
-        </header>
-
-        <!-- Mobile Navigation -->
-        <div class="menu-toggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <!-- End Mobile Navigation -->
-
-        <!-- Arrows Nav -->
-        <div class="lmpixels-arrows-nav">
-          <div class="lmpixels-arrow-right">
-            <i class="lnr lnr-chevron-right"></i>
-          </div>
-          <div class="lmpixels-arrow-left">
-            <i class="lnr lnr-chevron-left"></i>
           </div>
         </div>
-        <!-- End Arrows Nav -->
 
-        <div class="content-area">
-          <div class="animated-sections">
-            <!-- Home Subpage -->
-            <section data-id="home" class="animated-section start-page">
-              <div class="section-content vcentered">
-                <div class="row">
-                  <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="title-block">
-                      <h2>Edward Suarez</h2>
-                      <div class="owl-carousel text-rotation">
-                        <div class="item">
-                          <div class="sp-subtitle">Senior DevSecOps Engineer</div>
-                        </div>
-                        <div class="item">
-                          <div class="sp-subtitle">Cloud Architect</div>
-                        </div>
-                        <div class="item">
-                          <div class="sp-subtitle">Backend Developer (Go)</div>
-                        </div>
-                      </div>
-                    </div>
+        <!-- Signature pulse line -->
+        <div class="pulse-line" aria-hidden="true">
+          <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              class="pulse-path"
+              d="M0,40 L180,40 L195,14 L210,66 L225,40 L460,40 L475,24 L490,56 L505,40 L780,40 L795,8 L812,72 L827,40 L1200,40"
+            />
+          </svg>
+        </div>
+      </section>
+
+      <!-- ── Stats ──────────────────────────────────────── -->
+      <section id="stats" class="stats" aria-label="Key metrics">
+        <div class="container">
+          <div class="stats-grid">
+            <div class="stat-card reveal">
+              <span class="stat-number">5+</span>
+              <span class="stat-label">Years Experience</span>
+              <span class="stat-sub">DevSecOps &amp; Backend Engineering</span>
+            </div>
+            <div class="stat-card reveal reveal-delay-2">
+              <span class="stat-number">170+</span>
+              <span class="stat-label">Cloud Instances</span>
+              <span class="stat-sub">Orchestrated &amp; Managed</span>
+            </div>
+            <div class="stat-card reveal reveal-delay-4">
+              <span class="stat-number">66%</span>
+              <span class="stat-label">Faster Deploys</span>
+              <span class="stat-sub">90 min → 30 min at Banco Santander</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── About ──────────────────────────────────────── -->
+      <section id="about" class="section" aria-label="About me">
+        <div class="container">
+          <header class="section-header reveal">
+            <span class="section-label">About</span>
+            <h2 class="section-title">Who <em>I Am</em></h2>
+            <div class="section-rule" aria-hidden="true"></div>
+          </header>
+
+          <div class="about-grid">
+            <div class="reveal">
+              <p class="about-bio">
+                I'm <strong>Edward Mauricio Suarez</strong>, a <strong>Senior DevSecOps Engineer</strong> dedicated to Engineering Excellence.
+                With over <strong>5 years of experience</strong>, I specialize in designing secure, scalable cloud architectures on <strong>AWS</strong> and <strong>OpenShift</strong>.
+                My background combines DevOps governance with <strong>Backend Development in Go</strong>, allowing me to optimize infrastructure —
+                recently reducing deployment times by <strong>66%</strong> and boosting compliance to <strong>89%</strong>.
+              </p>
+
+              <dl class="info-list">
+                <div class="info-item">
+                  <dt class="info-key">Age</dt>
+                  <dd class="info-val" id="age"></dd>
+                </div>
+                <div class="info-item">
+                  <dt class="info-key">Location</dt>
+                  <dd class="info-val">Medellín, Colombia</dd>
+                </div>
+                <div class="info-item">
+                  <dt class="info-key">Email</dt>
+                  <dd class="info-val">
+                    <a href="mailto:contact@edwardsuarez.com">contact@edwardsuarez.com</a>
+                  </dd>
+                </div>
+                <div class="info-item">
+                  <dt class="info-key">Status</dt>
+                  <dd class="info-val" style="color: var(--jade);">Available for Freelance</dd>
+                </div>
+              </dl>
+
+              <div class="about-actions">
+                <a href="https://www.linkedin.com/in/edsuarezs/" target="_blank" rel="noopener" class="btn btn-primary">Let's Connect</a>
+                <a href="https://calendly.com/edsuarez0299/1-1-technical-consultation" target="_blank" rel="noopener" class="btn btn-outline">Schedule Session</a>
+              </div>
+            </div>
+
+            <div>
+              <div class="services-grid">
+                <div class="service-card reveal reveal-delay-1">
+                  <div class="service-icon" aria-hidden="true">
+                    <i class="fas fa-chart-line"></i>
+                  </div>
+                  <div>
+                    <h4>Site Reliability Engineer</h4>
+                    <p>High availability &amp; resilience through Observability (Dynatrace), Chaos Engineering, and automated recovery strategies.</p>
+                  </div>
+                </div>
+
+                <div class="service-card reveal reveal-delay-2">
+                  <div class="service-icon" aria-hidden="true">
+                    <i class="fas fa-shield-alt"></i>
+                  </div>
+                  <div>
+                    <h4>DevSecOps</h4>
+                    <p>Security integrated into CI/CD, ensuring compliance and vulnerability detection early — without sacrificing deployment speed.</p>
+                  </div>
+                </div>
+
+                <div class="service-card reveal reveal-delay-3">
+                  <div class="service-icon" aria-hidden="true">
+                    <i class="fas fa-cloud"></i>
+                  </div>
+                  <div>
+                    <h4>Cloud Architecture &amp; IaC</h4>
+                    <p>Scalable infrastructure on AWS and OpenShift, managed as code via Terraform and Ansible to eliminate manual toil.</p>
+                  </div>
+                </div>
+
+                <div class="service-card reveal reveal-delay-4">
+                  <div class="service-icon" aria-hidden="true">
+                    <i class="fas fa-code"></i>
+                  </div>
+                  <div>
+                    <h4>Backend Engineering</h4>
+                    <p>High-performance microservices in <strong>Go</strong> and <strong>Java</strong>, bridging the gap between Dev and Ops in cloud-native environments.</p>
                   </div>
                 </div>
               </div>
-            </section>
-            <!-- End of Home Subpage -->
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <!-- About Me Subpage -->
-            <section data-id="about-me" class="animated-section">
-              <div class="section-content">
-                <div class="page-title">
-                  <h2>About <span>Me</span></h2>
+      <!-- ── Resume ─────────────────────────────────────── -->
+      <section id="resume" class="section" aria-label="Resume, experience and skills">
+        <div class="container">
+          <header class="section-header reveal">
+            <span class="section-label">Resume</span>
+            <h2 class="section-title">Experience &amp; <em>Skills</em></h2>
+            <div class="section-rule" aria-hidden="true"></div>
+          </header>
+
+          <div class="resume-grid">
+            <!-- Experience -->
+            <div class="reveal">
+              <h3 style="margin-bottom: var(--s4);">Experience</h3>
+              <div class="timeline" role="list">
+
+                <article class="tl-item" role="listitem">
+                  <div class="tl-dot" aria-hidden="true"></div>
+                  <div class="tl-meta">
+                    <time class="tl-period">Nov 2024 – Current</time>
+                    <span class="tl-company">UST Global</span>
+                  </div>
+                  <h4 class="tl-role">Senior DevOps Engineer</h4>
+                  <p class="tl-desc">
+                    Client: Banco Santander. Orchestrating an ecosystem of 50+ microservices.
+                    <strong>Reduced system startup time by 66%</strong> (90m → 30m) and improved infrastructure compliance to 89%.
+                  </p>
+                </article>
+
+                <article class="tl-item" role="listitem">
+                  <div class="tl-dot" aria-hidden="true"></div>
+                  <div class="tl-meta">
+                    <time class="tl-period">Aug 2023 – Nov 2024</time>
+                    <span class="tl-company">Pragma</span>
+                  </div>
+                  <h4 class="tl-role">DevSecOps / SRE</h4>
+                  <p class="tl-desc">
+                    Implemented Golden Signals monitoring for high-criticality banking apps.
+                    Automated Chaos Engineering workflows to identify vulnerabilities before production.
+                  </p>
+                </article>
+
+                <article class="tl-item" role="listitem">
+                  <div class="tl-dot" aria-hidden="true"></div>
+                  <div class="tl-meta">
+                    <time class="tl-period">Nov 2021 – May 2023</time>
+                    <span class="tl-company">Mercado Libre</span>
+                  </div>
+                  <h4 class="tl-role">Software Developer (Golang)</h4>
+                  <p class="tl-desc">
+                    Backend development in Go for high-traffic commerce modules.
+                    Optimized DB performance by 15% and accelerated CI/CD delivery metrics by 30%.
+                  </p>
+                </article>
+
+                <article class="tl-item" role="listitem">
+                  <div class="tl-dot" aria-hidden="true"></div>
+                  <div class="tl-meta">
+                    <time class="tl-period">Aug 2021 – Nov 2021</time>
+                    <span class="tl-company">SETI S.A.S.</span>
+                  </div>
+                  <h4 class="tl-role">DevOps Engineer</h4>
+                  <p class="tl-desc">
+                    Automated deployments via CloudFormation, reducing human error rates by 15% and ensuring seamless operations.
+                  </p>
+                </article>
+
+                <article class="tl-item" role="listitem">
+                  <div class="tl-dot" aria-hidden="true"></div>
+                  <div class="tl-meta">
+                    <time class="tl-period">Nov 2020 – Aug 2021</time>
+                    <span class="tl-company">Integ.ro</span>
+                  </div>
+                  <h4 class="tl-role">DevOps Engineer</h4>
+                  <p class="tl-desc">
+                    Maintained 99.9% uptime on cloud infrastructure and reduced deployment lead time by 25% through pipeline optimization.
+                  </p>
+                </article>
+
+              </div>
+
+              <!-- Education -->
+              <h3 style="margin: var(--s8) 0 var(--s4);">Education</h3>
+              <div class="timeline" role="list">
+                <article class="tl-item" role="listitem">
+                  <div class="tl-dot" style="background: var(--steel); box-shadow: 0 0 0 2px var(--steel);" aria-hidden="true"></div>
+                  <div class="tl-meta">
+                    <time class="tl-period" style="color: var(--steel);">2026 <em style="font-style:italic;font-size:0.65rem;color:var(--muted);">expected</em></time>
+                    <span class="tl-company">Escolme University</span>
+                  </div>
+                  <h4 class="tl-role">Technologist in Network Security</h4>
+                  <p class="tl-desc">Focus on Reverse Engineering and Analysis of Network Elements.</p>
+                </article>
+
+                <article class="tl-item" role="listitem">
+                  <div class="tl-dot" style="background: var(--steel); box-shadow: 0 0 0 2px var(--steel);" aria-hidden="true"></div>
+                  <div class="tl-meta">
+                    <time class="tl-period" style="color: var(--steel);">2019</time>
+                    <span class="tl-company">CESDE</span>
+                  </div>
+                  <h4 class="tl-role">Software Development Technician</h4>
+                  <p class="tl-desc">Specialized in software maintenance and team collaboration.</p>
+                </article>
+              </div>
+            </div>
+
+            <!-- Skills & Certs -->
+            <div class="reveal reveal-delay-2">
+              <h3 style="margin-bottom: var(--s4);">Technical Skills</h3>
+
+              <div class="skills-group">
+                <span class="skills-group-label">Cloud &amp; Infrastructure</span>
+                <ul class="skill-tags" role="list">
+                  <li class="skill-tag">AWS (EC2, RDS, S3, VPC)</li>
+                  <li class="skill-tag">Kubernetes</li>
+                  <li class="skill-tag">OpenShift</li>
+                  <li class="skill-tag">Terraform</li>
+                  <li class="skill-tag">Ansible</li>
+                  <li class="skill-tag">CloudFormation</li>
+                </ul>
+              </div>
+
+              <div class="skills-group">
+                <span class="skills-group-label">CI/CD &amp; DevOps</span>
+                <ul class="skill-tags" role="list">
+                  <li class="skill-tag">GitHub Actions</li>
+                  <li class="skill-tag">GitLab CI</li>
+                  <li class="skill-tag">ArgoCD</li>
+                  <li class="skill-tag">Docker</li>
+                  <li class="skill-tag">Helm</li>
+                </ul>
+              </div>
+
+              <div class="skills-group">
+                <span class="skills-group-label">Languages</span>
+                <ul class="skill-tags" role="list">
+                  <li class="skill-tag">Golang</li>
+                  <li class="skill-tag">Java</li>
+                  <li class="skill-tag">Python</li>
+                  <li class="skill-tag">Bash</li>
+                </ul>
+              </div>
+
+              <div class="skills-group">
+                <span class="skills-group-label">Observability &amp; SRE</span>
+                <ul class="skill-tags" role="list">
+                  <li class="skill-tag">Dynatrace</li>
+                  <li class="skill-tag">Prometheus</li>
+                  <li class="skill-tag">Chaos Engineering</li>
+                  <li class="skill-tag">Golden Signals</li>
+                </ul>
+              </div>
+
+              <!-- Certificates -->
+              <h3 style="margin: var(--s8) 0 var(--s4);">Certifications</h3>
+              <div class="certs-grid">
+                <a
+                  href="https://www.credly.com/badges/b57cf904-0e96-4559-a6ba-cb1ecd15b4c3/public_url"
+                  target="_blank" rel="noopener"
+                  class="cert-card"
+                  aria-label="AWS Certified Cloud Practitioner — Verified on Credly"
+                >
+                  <img src="assets/images/certificates/cloud_practitioner.png" alt="AWS Cloud Practitioner badge" class="cert-logo" width="52" height="52" />
+                  <div class="cert-info">
+                    <h4>AWS Certified Cloud Practitioner</h4>
+                    <time class="cert-date">Issued: Feb 2024</time>
+                    <span class="cert-issuer">Amazon Web Services</span>
+                  </div>
+                </a>
+
+                <div class="cert-card pending" aria-label="AWS Solutions Architect — In progress">
+                  <img src="assets/images/certificates/cloud_practitioner.png" alt="" class="cert-logo" width="52" height="52" aria-hidden="true" style="opacity:0.2;" />
+                  <div class="cert-info">
+                    <h4>AWS Solutions Architect – Associate</h4>
+                    <time class="cert-date" style="color:var(--muted);">Target: Jan 2026</time>
+                    <span class="cert-issuer">In Progress</span>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                <!-- Personal Information -->
-                <div class="row">
-                  <div class="col-xs-12 col-sm-7">
-                    <p>
-                      Hello! I'm Edward Mauricio Suarez, a <strong>Senior DevSecOps Engineer</strong> dedicated to Engineering Excellence. 
-                      With over <strong>5 years of experience</strong>, I specialize in designing secure, scalable cloud architectures on <strong>AWS</strong> and <strong>OpenShift</strong>. 
-                      My unique background combines DevOps governance with <strong>Backend Development (Go)</strong> expertise, allowing me to optimize infrastructure — recently reducing deployment times by <strong>66%</strong> and boosting compliance to <strong>89%</strong>. 
-                      Let's connect and explore how I can contribute to your next project!
+      <!-- ── Projects ───────────────────────────────────── -->
+      <section id="projects" class="section" aria-label="Projects portfolio">
+        <div class="container">
+          <header class="section-header reveal">
+            <span class="section-label">Work</span>
+            <h2 class="section-title">Featured <em>Projects</em></h2>
+            <div class="section-rule" aria-hidden="true"></div>
+          </header>
+
+          <div class="project-filters reveal" role="group" aria-label="Filter projects by category">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="infrastructure">Infrastructure</button>
+            <button class="filter-btn" data-filter="observability">Observability</button>
+            <button class="filter-btn" data-filter="resilience">Resilience</button>
+          </div>
+
+          <div class="projects-grid" role="list">
+
+            <article
+              class="project-card reveal"
+              role="listitem"
+              data-category="infrastructure"
+              data-portfolio="portfolio-1.html"
+              tabindex="0"
+              aria-label="AWS Enterprise IaC project — click to view details"
+            >
+              <div class="project-header">
+                <span class="project-cat">Infrastructure</span>
+                <i class="fas fa-arrow-up-right-from-square project-arrow" aria-hidden="true"></i>
+              </div>
+              <h3>AWS Enterprise IaC</h3>
+              <p class="project-tech">Terraform / CloudFormation</p>
+              <p class="project-desc">IaC templates for deploying secure VPCs and EC2 auto-scaling groups managing 170+ cloud instances.</p>
+            </article>
+
+            <article
+              class="project-card reveal reveal-delay-1"
+              role="listitem"
+              data-category="infrastructure"
+              data-portfolio="portfolio-2.html"
+              tabindex="0"
+              aria-label="GitOps with OpenShift project — click to view details"
+            >
+              <div class="project-header">
+                <span class="project-cat">Infrastructure</span>
+                <i class="fas fa-arrow-up-right-from-square project-arrow" aria-hidden="true"></i>
+              </div>
+              <h3>GitOps with OpenShift</h3>
+              <p class="project-tech">ArgoCD / Kubernetes</p>
+              <p class="project-desc">Automated deployment pipeline for 50+ microservices with multi-environment promotion strategy.</p>
+            </article>
+
+            <article
+              class="project-card reveal reveal-delay-2"
+              role="listitem"
+              data-category="observability"
+              data-portfolio="portfolio-3.html"
+              tabindex="0"
+              aria-label="Golden Signals Observability project — click to view details"
+            >
+              <div class="project-header">
+                <span class="project-cat">Observability</span>
+                <i class="fas fa-arrow-up-right-from-square project-arrow" aria-hidden="true"></i>
+              </div>
+              <h3>Golden Signals Observability</h3>
+              <p class="project-tech">Dynatrace / Prometheus</p>
+              <p class="project-desc">Monitoring platform implementing Golden Signals for banking systems ensuring 99.9% uptime.</p>
+            </article>
+
+            <article
+              class="project-card reveal reveal-delay-3"
+              role="listitem"
+              data-category="resilience"
+              data-portfolio="portfolio-4.html"
+              tabindex="0"
+              aria-label="Chaos Engineering Automated project — click to view details"
+            >
+              <div class="project-header">
+                <span class="project-cat">Resilience</span>
+                <i class="fas fa-arrow-up-right-from-square project-arrow" aria-hidden="true"></i>
+              </div>
+              <h3>Chaos Engineering Automated</h3>
+              <p class="project-tech">Chaos Toolkit / Gremlin</p>
+              <p class="project-desc">Testing resilience in K8s clusters simulating pod failures and network latency issues.</p>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Testimonials ───────────────────────────────── -->
+      <section id="testimonials" class="section" aria-label="Testimonials">
+        <div class="container">
+          <header class="section-header reveal">
+            <span class="section-label">Social Proof</span>
+            <h2 class="section-title">What People <em>Say</em></h2>
+            <div class="section-rule" aria-hidden="true"></div>
+          </header>
+
+          <div class="testimonials-wrap reveal">
+            <div class="testimonials-track" id="testimonials-track" role="list">
+
+              <div class="testimonial-card" role="listitem">
+                <div class="testimonial-quote" aria-hidden="true"><i class="fas fa-quote-right"></i></div>
+                <blockquote class="testimonial-text">
+                  I had the opportunity to work with Edward on several projects when I was starting as DevOps — he was always very diligent in all the tasks he was assigned and his attitude to learn was always the best.
+                </blockquote>
+                <footer class="testimonial-author">
+                  <img src="/assets/images/testimonials/testimonial-1.jpeg" alt="Fernando Castro" class="testimonial-photo" width="44" height="44" />
+                  <div>
+                    <p class="testimonial-name">Fernando Castro</p>
+                    <p class="testimonial-role">Head of R&amp;D at EdgeUno</p>
+                  </div>
+                </footer>
+              </div>
+
+              <div class="testimonial-card" role="listitem">
+                <div class="testimonial-quote" aria-hidden="true"><i class="fas fa-quote-right"></i></div>
+                <blockquote class="testimonial-text">
+                  Edward es súper apasionado por lo que le gusta, muy decidido, aprende por si solo y súper rápido, además, trata de mantenerse siempre actualizado nutriéndose siempre de nuevos conocimientos para estar a la vanguardia.
+                </blockquote>
+                <footer class="testimonial-author">
+                  <img src="/assets/images/testimonials/testimonial-4.jpeg" alt="Wuendy Pertuz" class="testimonial-photo" width="44" height="44" />
+                  <div>
+                    <p class="testimonial-name">Wuendy Pertuz</p>
+                    <p class="testimonial-role">Project Lead at Mercado Libre</p>
+                  </div>
+                </footer>
+              </div>
+
+              <div class="testimonial-card" role="listitem">
+                <div class="testimonial-quote" aria-hidden="true"><i class="fas fa-quote-right"></i></div>
+                <blockquote class="testimonial-text">
+                  He is a highly dedicated and talented developer, with expertise in various technologies such as Go, AWS, and Linux. Additionally, he possesses strong DevOps skills and exhibits great enthusiasm for information security.
+                </blockquote>
+                <footer class="testimonial-author">
+                  <img src="/assets/images/testimonials/testimonial-2.jpeg" alt="Kevin Parra" class="testimonial-photo" width="44" height="44" />
+                  <div>
+                    <p class="testimonial-name">Kevin Parra</p>
+                    <p class="testimonial-role">Software Engineer at Wizeline</p>
+                  </div>
+                </footer>
+              </div>
+
+              <div class="testimonial-card" role="listitem">
+                <div class="testimonial-quote" aria-hidden="true"><i class="fas fa-quote-right"></i></div>
+                <blockquote class="testimonial-text">
+                  Ed es una persona apasionada por la tecnología y lo refleja en trabajo día a día, es muy autodidacta además de ser un gran compañero y gran persona.
+                </blockquote>
+                <footer class="testimonial-author">
+                  <img src="/assets/images/testimonials/testimonial-3.jpeg" alt="Harold Esteban Caro" class="testimonial-photo" width="44" height="44" />
+                  <div>
+                    <p class="testimonial-name">Harold Esteban Caro</p>
+                    <p class="testimonial-role">Software Technical Leader at Mercado Libre</p>
+                  </div>
+                </footer>
+              </div>
+
+            </div>
+
+            <div class="testimonials-nav" aria-label="Testimonial navigation">
+              <button id="test-prev" aria-label="Previous testimonial">
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+              </button>
+              <button id="test-next" aria-label="Next testimonial">
+                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Companies ──────────────────────────────────── -->
+      <section class="companies" aria-label="Companies I have worked with">
+        <div class="container">
+          <p class="companies-label">I have worked at</p>
+        </div>
+        <div class="companies-scroll">
+          <div class="companies-track" aria-hidden="true">
+            <!-- ×2 for seamless loop -->
+            <img src="assets/images/clients/client-1.png" alt="Pragma" class="company-logo" height="36" />
+            <img src="assets/images/clients/client-2.png" alt="MercadoLibre" class="company-logo" height="36" />
+            <img src="assets/images/clients/client-3.png" alt="SETI SAS" class="company-logo" height="36" />
+            <img src="assets/images/clients/client-4.png" alt="Integ.ro" class="company-logo" height="36" />
+            <img src="assets/images/clients/client-5.png" alt="CESDE" class="company-logo" height="36" />
+            <img src="assets/images/clients/client-1.png" alt="" class="company-logo" height="36" />
+            <img src="assets/images/clients/client-2.png" alt="" class="company-logo" height="36" />
+            <img src="assets/images/clients/client-3.png" alt="" class="company-logo" height="36" />
+            <img src="assets/images/clients/client-4.png" alt="" class="company-logo" height="36" />
+            <img src="assets/images/clients/client-5.png" alt="" class="company-logo" height="36" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Pricing ────────────────────────────────────── -->
+      <section id="pricing" class="section" aria-label="Services and pricing">
+        <div class="container">
+          <header class="section-header reveal">
+            <span class="section-label">Services</span>
+            <h2 class="section-title">What I <em>Offer</em></h2>
+            <div class="section-rule" aria-hidden="true"></div>
+          </header>
+
+          <div class="pricing-grid">
+
+            <div class="pricing-card reveal">
+              <p class="pricing-tier">Consulting</p>
+              <p class="pricing-model">Hourly / Task</p>
+              <ul class="pricing-features">
+                <li>Troubleshooting &amp; Debugging</li>
+                <li>Code Review (Go / Java)</li>
+                <li>Scripting (Python / Bash)</li>
+                <li>AWS Configuration Fixes</li>
+              </ul>
+              <a href="https://calendly.com/edsuarez0299/1-1-technical-consultation" target="_blank" rel="noopener" class="btn btn-outline">Schedule Technical Session</a>
+            </div>
+
+            <div class="pricing-card featured reveal reveal-delay-2">
+              <span class="pricing-badge">Most Popular</span>
+              <p class="pricing-tier">Implementation</p>
+              <p class="pricing-model">Project Based</p>
+              <ul class="pricing-features">
+                <li>CI/CD Pipeline Setup</li>
+                <li>IaC (Terraform / Ansible)</li>
+                <li>Containerization (Docker / K8s)</li>
+                <li>Migration to Cloud (AWS)</li>
+              </ul>
+              <a href="https://calendar.app.google/gTt3SHVnkYdTsYgC8" target="_blank" rel="noopener" class="btn btn-primary">Book Discovery Call</a>
+            </div>
+
+            <div class="pricing-card reveal reveal-delay-4">
+              <p class="pricing-tier">Architecture</p>
+              <p class="pricing-model">Custom Plan</p>
+              <ul class="pricing-features">
+                <li>Security &amp; Compliance Audit</li>
+                <li>Well-Architected Review</li>
+                <li>Observability Setup (Dynatrace)</li>
+                <li>Chaos Engineering Strategy</li>
+              </ul>
+              <a href="https://calendar.app.google/gTt3SHVnkYdTsYgC8" target="_blank" rel="noopener" class="btn btn-outline">Request Audit</a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Contact ────────────────────────────────────── -->
+      <section id="contact" class="section" aria-label="Contact">
+        <div class="container">
+          <header class="section-header reveal">
+            <span class="section-label">Contact</span>
+            <h2 class="section-title">Let's <em>Talk Business</em></h2>
+            <div class="section-rule" aria-hidden="true"></div>
+          </header>
+
+          <div class="contact-grid">
+            <div class="reveal">
+              <div class="contact-info">
+                <div class="contact-item">
+                  <div class="contact-item-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></div>
+                  <div>
+                    <p class="contact-item-label">Location</p>
+                    <p class="contact-item-value">Medellín, Colombia</p>
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <div class="contact-item-icon" aria-hidden="true"><i class="fas fa-phone"></i></div>
+                  <div>
+                    <p class="contact-item-label">Phone</p>
+                    <p class="contact-item-value">
+                      <a href="tel:+573005298170">(+57) 300 529 8170</a>
                     </p>
                   </div>
-
-                  <div class="col-xs-12 col-sm-5">
-                    <div class="info-list">
-                      <ul>
-                        <li>
-                          <span class="title">Age</span>
-                          <span class="value" id="age"></span>
-                        </li>
-
-                        <li>
-                          <span class="title">Residence</span>
-                          <span class="value">Medellín, Colombia</span>
-                        </li>
-
-                        <li>
-                          <span class="title">e-mail</span>
-                          <span class="value">
-                            <a href="mailto:contact@edwardsuarez.com" target="_blank">
-                              contact@edwardsuarez.com
-                            </a>
-                          </span>
-                        </li>
-
-                        <li>
-                          <span class="value"></span>
-                            <a
-                              href="https://www.linkedin.com/in/edsuarezs/"
-                              target="_blank"
-                            >
-                              <button>Let's Connect</button>
-                            </a>
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
+                </div>
+                <div class="contact-item">
+                  <div class="contact-item-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
+                  <div>
+                    <p class="contact-item-label">Email</p>
+                    <p class="contact-item-value">
+                      <a href="mailto:contact@edwardsuarez.com">contact@edwardsuarez.com</a>
+                    </p>
                   </div>
                 </div>
-                <!-- End of Personal Information -->
-
-                <div class="white-space-50"></div>
-
-                <!-- Services -->
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="block-title">
-                      <h3>What <span>I Do</span></h3>
-                    </div>
+                <div class="contact-item">
+                  <div class="contact-item-icon" aria-hidden="true" style="background:rgba(0,217,166,0.1);">
+                    <i class="fas fa-check-circle" style="color:var(--jade);"></i>
                   </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-6">
-                    <div class="col-inner">
-                      <div class="info-list-w-icon">
-                        <div class="info-block-w-icon">
-                          <div class="ci-icon">
-                            <i class="lnr lnr-chart-bars"></i>
-                          </div>
-                          <div class="ci-text">
-                            <h4>Site Reliability Engineer (SRE)</h4>
-                            <p>
-                              I ensure high availability and resilience through 
-                              <strong>Observability</strong> (Dynatrace), <strong>Chaos Engineering</strong>, 
-                              and automated recovery strategies for critical systems.
-                            </p>
-                          </div>
-                        </div>
-                        <div class="info-block-w-icon">
-                          <div class="ci-icon">
-                            <i class="fas fa-shield-alt"></i>
-                          </div>
-                          <div class="ci-text">
-                            <h4>DevSecOps</h4>
-                            <p>
-                              I integrate security into the CI/CD pipeline, ensuring 
-                              compliance and vulnerability detection early in the lifecycle 
-                              without sacrificing deployment speed.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-xs-12 col-sm-6">
-                    <div class="col-inner">
-                      <div class="info-list-w-icon">
-                        <div class="info-block-w-icon">
-                          <div class="ci-icon">
-                            <i class="lnr lnr-cloud"></i>
-                          </div>
-                          <div class="ci-text">
-                            <h4>Cloud Architecture & IaC</h4>
-                            <p>
-                              I design and orchestrate scalable infrastructure on 
-                              <strong>AWS</strong> and <strong>OpenShift</strong>, managing everything as code 
-                              (Terraform/Ansible) to eliminate manual toil.
-                            </p>
-                          </div>
-                        </div>
-                        <div class="info-block-w-icon">
-                          <div class="ci-icon">
-                            <i class="lnr lnr-laptop"></i>
-                          </div>
-                          <div class="ci-text">
-                            <h4>Backend Engineering</h4>
-                            <p>
-                              Bridging the gap between Dev and Ops, I build high-performance 
-                              microservices in <strong>Go</strong> and <strong>Java</strong>, optimized for 
-                              cloud-native environments.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End of Services -->
-
-                <div class="white-space-30"></div>
-
-                <!-- Testimonials -->
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="block-title">
-                      <h3>Testimonials</h3>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="testimonials owl-carousel">
-                      <!-- Testimonial 1 -->
-                      <div class="testimonial">
-                        <div class="img">
-                          <img
-                            src="/assets/images/testimonials/testimonial-1.jpeg"
-                            alt="Fernando Castro"
-                          />
-                        </div>
-                        <div class="text">
-                          <p>
-                            I had the opportunity to work with Edward on several projects when I was starting as DevOps he was always very diligent in all the tasks he was assigned and his attitude to learn was always the best.
-                          </p>
-                        </div>
-
-                        <div class="author-info">
-                          <h4 class="author">Fernando Castro</h4>
-                          <h5 class="company">Head of Research and Development at EdgeUno</h5>
-                          <div class="icon">
-                            <i class="fas fa-quote-right"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End of Testimonial 1 -->
-                      <!-- Testimonial 4 -->
-                      <div class="testimonial">
-                        <div class="img">
-                          <img
-                            src="/assets/images/testimonials/testimonial-4.jpeg"
-                            alt="Wuendy Pertuz"
-                          />
-                        </div>
-                        <div class="text">
-                          <p>
-                            Edward es súper apasionado por lo que le gusta, muy decidido, aprende por si solo y súper rápido, además, trata de mantenerse siempre actualizado nutriéndose siempre de nuevos conocimientos para estar a la vanguardia. 
-                          </p>
-                        </div>
-
-                        <div class="author-info">
-                          <h4 class="author">Wuendy Pertuz</h4>
-                          <h5 class="company">Project Lead at Mercado Libre</h5>
-                          <div class="icon">
-                            <i class="fas fa-quote-right"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End of Testimonial 4 -->
-                      <!-- Testimonial 2 -->
-                      <div class="testimonial">
-                        <div class="img">
-                          <img
-                            src="/assets/images/testimonials/testimonial-2.jpeg"
-                            alt="Kevin Parra"
-                          />
-                        </div>
-                        <div class="text">
-                          <p>
-                            He is a highly dedicated and talented developer, with expertise in various technologies such as Go, AWS, and Linux. Additionally, he possesses strong DevOps skills and exhibits great enthusiasm for information security.
-                          </p>
-                        </div>
-
-                        <div class="author-info">
-                          <h4 class="author">Kevin Parra</h4>
-                          <h5 class="company">Software Engineer at Wizeline</h5>
-                          <div class="icon">
-                            <i class="fas fa-quote-right"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End of Testimonial 2 -->
-
-                      <!-- Testimonial 3 -->
-                      <div class="testimonial">
-                        <div class="img">
-                          <img
-                            src="/assets/images/testimonials/testimonial-3.jpeg"
-                            alt="Harold Esteban Caro"
-                          />
-                        </div>
-                        <div class="text">
-                          <p>
-                            Ed es una persona apasionada por la tecnología y lo refleja en trabajo día a día, es muy autodidacta además de ser un gran compañero y gran persona.
-                          </p>
-                        </div>
-
-                        <div class="author-info">
-                          <h4 class="author">Harold Esteban Caro</h4>
-                          <h5 class="company">Software Technical Leader at Mercado Libre</h5>
-                          <div class="icon">
-                            <i class="fas fa-quote-right"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End of Testimonial 3 -->
-
-
-                    </div>
-                  </div>
-                </div>
-                <!-- End of Testimonials -->
-
-                <div class="white-space-50"></div>
-
-                <!-- Clients -->
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="block-title">
-                      <h3>I have worked at</h3>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="clients owl-carousel">
-                      <div class="client-block">
-                        <a href="https://www.pragma.co/es/" target="_blank" title="Logo">
-                          <img
-                            src="assets/images/clients/client-1.png"
-                            alt="Logo Pragma"
-                          />
-                        </a>
-                      </div>
-
-                      <div class="client-block">
-                        <a href="https://www.mercadolibre.com.co/" target="_blank" title="Logo">
-                          <img
-                            src="assets/images/clients/client-2.png"
-                            alt="Logo MercadoLibre"
-                          />
-                        </a>
-                      </div>
-
-                      <div class="client-block">
-                        <a href="https://seti.com.co/" target="_blank" title="Logo">
-                          <img
-                            src="assets/images/clients/client-3.png"
-                            alt="Logo Seti sas"
-                          />
-                        </a>
-                      </div>
-
-                      <div class="client-block">
-                        <a href="https://integ.ro/" target="_blank" title="Logo">
-                          <img
-                            src="assets/images/clients/client-4.png"
-                            alt="Logo integro"
-                          />
-                        </a>
-                      </div>
-
-                      <div class="client-block">
-                        <a href="https://www.cesde.edu.co/" target="_blank" title="Logo">
-                          <img
-                            src="assets/images/clients/client-5.png"
-                            alt="Logo cesde"
-                          />
-                        </a>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                <!-- End of Clients -->
-
-                <div class="white-space-50"></div>
-
-                <!-- Pricing -->
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="block-title">
-                      <h3>Pricing</h3>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="fw-pricing clearfix row">
-                      
-                      <div class="fw-package-wrap col-md-4">
-                        <div class="fw-package">
-                          <div class="fw-heading-row">
-                            <span>Consulting</span>
-                          </div>
-                          <div class="fw-pricing-row">
-                            <span>Hourly / Task</span>
-                          </div>
-                          <div class="fw-button-row">
-                            <a href="https://calendly.com/edsuarez0299/1-1-technical-consultation" target="_blank" class="btn btn-secondary">Schedule Technical Session</a>
-                          </div>
-                          <div class="fw-default-row">Troubleshooting & Debugging</div>
-                          <div class="fw-default-row">Code Review (Go/Java)</div>
-                          <div class="fw-default-row">Scripting (Python/Bash)</div>
-                          <div class="fw-default-row">AWS Configuration Fixes</div>
-                        </div>
-                      </div>
-
-                      <div class="fw-package-wrap col-md-4">
-                        <div class="fw-package">
-                          <div class="fw-heading-row">
-                            <span>Implementation</span>
-                          </div>
-                          <div class="fw-pricing-row">
-                            <span>Project Base</span>
-                          </div>
-                          <div class="fw-button-row">
-                            <a href="https://calendar.app.google/gTt3SHVnkYdTsYgC8" target="_blank" class="btn btn-primary">Book Discovery Call</a>
-                          </div>
-                          <div class="fw-default-row">CI/CD Pipeline Setup</div>
-                          <div class="fw-default-row">IaC (Terraform/Ansible)</div>
-                          <div class="fw-default-row">Containerization (Docker/K8s)</div>
-                          <div class="fw-default-row">Migration to Cloud (AWS)</div>
-                        </div>
-                      </div>
-
-                      <div class="fw-package-wrap col-md-4">
-                        <div class="fw-package">
-                          <div class="fw-heading-row">
-                            <span>Architecture</span>
-                          </div>
-                          <div class="fw-pricing-row">
-                            <span>Custom Plan</span>
-                          </div>
-                          <div class="fw-button-row">
-                            <a href="https://calendar.app.google/gTt3SHVnkYdTsYgC8" target="_blank" class="btn btn-secondary">Request Audit</a>
-                          </div>
-                          <div class="fw-default-row">Security & Compliance Audit</div>
-                          <div class="fw-default-row">Well-Architected Review</div>
-                          <div class="fw-default-row">Observability Setup (Dynatrace)</div>
-                          <div class="fw-default-row">Chaos Engineering Strategy</div>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- End of Pricing -->
-
-                <div class="white-space-50"></div>
-
-                <!-- By The Numbers -->
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="block-title">
-                      <h3>By The <span>Numbers</span></h3>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-4">
-                    <div class="fun-fact gray-default">
-                      <i class="far fa-clock"></i>
-                      <h4>Years Experience</h4>
-                      <span class="fun-fact-block-value">5+</span>
-                      <span class="fun-fact-block-text">In DevSecOps & Backend</span>
-                    </div>
-                  </div>
-
-                  <div class="col-xs-12 col-sm-4">
-                    <div class="fun-fact gray-default">
-                      <i class="lnr lnr-cloud"></i>
-                      <h4>Cloud Instances</h4>
-                      <span class="fun-fact-block-value">170+</span>
-                      <span class="fun-fact-block-text">Orchestrated & Managed</span>
-                    </div>
-                  </div>
-
-                  <div class="col-xs-12 col-sm-4">
-                    <div class="fun-fact gray-default">
-                      <i class="lnr lnr-rocket"></i>
-                      <h4>Faster Deploys</h4>
-                      <span class="fun-fact-block-value">66%</span>
-                      <span class="fun-fact-block-text">Optimization Achieved</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- End of By The Numbers -->
-              </div>
-            </section>
-            <!-- End of About Me Subpage -->
-
-            <!-- Resume Subpage -->
-            <section data-id="resume" class="animated-section">
-              <div class="section-content">
-                <div class="page-title">
-                  <h2>Resume</h2>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-7">
-                    <div class="block-title">
-                      <h3>Experience</h3>
-                    </div>
-
-                    <div class="timeline timeline-second-style clearfix">
-                      
-                      <div class="timeline-item clearfix">
-                        <div class="left-part">
-                          <h5 class="item-period">Nov 2024 - Current</h5>
-                          <span class="item-company">UST Global</span>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="right-part">
-                          <h4 class="item-title">Senior DevOps Engineer</h4>
-                          <p>
-                            Client: Banco Santander. Orchestrating a massive ecosystem of 50+ microservices. 
-                            <strong>Key Achievement:</strong> Reduced system startup time by <strong>66%</strong> (90m to 30m) and improved infrastructure compliance to 89%.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div class="timeline-item clearfix">
-                        <div class="left-part">
-                          <h5 class="item-period">Aug 2023 - Nov 2024</h5>
-                          <span class="item-company">Pragma</span>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="right-part">
-                          <h4 class="item-title">DevSecOps / SRE</h4>
-                          <p>
-                            Implemented <strong>Golden Signals</strong> monitoring for high-criticality banking apps. 
-                            Automated <strong>Chaos Engineering</strong> workflows to identify vulnerabilities before production.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div class="timeline-item clearfix">
-                        <div class="left-part">
-                          <h5 class="item-period">Nov 2021 - May 2023</h5>
-                          <span class="item-company">Mercado Libre</span>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="right-part">
-                          <h4 class="item-title">Software Developer (Golang)</h4>
-                          <p>
-                            Backend development in <strong>Go</strong> for high-traffic commerce modules. 
-                            Optimized DB performance by <strong>15%</strong> and accelerated CI/CD delivery metrics by 30%.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div class="timeline-item clearfix">
-                        <div class="left-part">
-                          <h5 class="item-period">Aug 2021 - Nov 2021</h5>
-                          <span class="item-company">SETI S.A.S.</span>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="right-part">
-                          <h4 class="item-title">DevOps Engineer</h4>
-                          <p>
-                            Automated deployments via <strong>CloudFormation</strong>, reducing human error rates by 15% and ensuring seamless operations.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div class="timeline-item clearfix">
-                        <div class="left-part">
-                          <h5 class="item-period">Nov 2020 - Aug 2021</h5>
-                          <span class="item-company">Integ.ro</span>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="right-part">
-                          <h4 class="item-title">DevOps Engineer</h4>
-                          <p>
-                            Maintained 99.9% uptime on cloud infrastructure and reduced deployment lead time by 25% through pipeline optimization.
-                          </p>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <div class="white-space-50"></div>
-
-                    <div class="block-title">
-                      <h3>Education</h3>
-                    </div>
-
-                    <div class="timeline timeline-second-style clearfix">
-                      <div class="timeline-item clearfix">
-                        <div class="left-part">
-                          <h5 class="item-period">2026</h5>
-                          <small><i>expected</i></small>
-                          <span class="item-company">Escolme University</span>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="right-part">
-                          <h4 class="item-title">Technologist in Network Security</h4>
-                          <p>
-                            Focus on Reverse Engineering and Analysis of Network Elements.
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div class="timeline-item clearfix">
-                        <div class="left-part">
-                          <h5 class="item-period">2019</h5>
-                          <span class="item-company">CESDE</span>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="right-part">
-                          <h4 class="item-title">Software Development Technician</h4>
-                          <p>Specialized in software maintenance and team collaboration.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-xs-12 col-sm-5">
-                    
-                    <div class="block-title">
-                      <h3>Technical <span>Skills</span></h3>
-                    </div>
-
-                    <div class="skills-info skills-second-style">
-                      <div class="skill clearfix">
-                        <h4>Cloud (AWS & OpenShift)</h4>
-                        <div class="skill-value">95%</div>
-                      </div>
-                      <div class="skill-container skill-1">
-                        <div class="skill-percentage"></div>
-                      </div>
-                      
-                      <div class="skill clearfix">
-                        <h4>IaC (Terraform/Ansible)</h4>
-                        <div class="skill-value">90%</div>
-                      </div>
-                      <div class="skill-container skill-2">
-                        <div class="skill-percentage"></div>
-                      </div>
-                      
-                      <div class="skill clearfix">
-                        <h4>Backend (Go & Java)</h4>
-                        <div class="skill-value">85%</div>
-                      </div>
-                      <div class="skill-container skill-3">
-                        <div class="skill-percentage"></div>
-                      </div>
-                      
-                      <div class="skill clearfix">
-                        <h4>CI/CD Automation</h4>
-                        <div class="skill-value">98%</div>
-                      </div>
-                      <div class="skill-container skill-4">
-                        <div class="skill-percentage"></div>
-                      </div>
-                    </div>
-
-                    <div class="white-space-10"></div>
-
-                    <div class="block-title">
-                      <h3>SRE & <span>Security</span></h3>
-                    </div>
-
-                    <div class="skills-info skills-second-style">
-                      <div class="skill clearfix">
-                        <h4>Observability (Dynatrace)</h4>
-                        <div class="skill-value">95%</div>
-                      </div>
-                      <div class="skill-container skill-5">
-                        <div class="skill-percentage"></div>
-                      </div>
-
-                      <div class="skill clearfix">
-                        <h4>Chaos Engineering</h4>
-                        <div class="skill-value">85%</div>
-                      </div>
-                      <div class="skill-container skill-6">
-                        <div class="skill-percentage"></div>
-                      </div>
-
-                      <div class="skill clearfix">
-                        <h4>DevSecOps Governance</h4>
-                        <div class="skill-value">90%</div>
-                      </div>
-                      <div class="skill-container skill-7">
-                        <div class="skill-percentage"></div>
-                      </div>
-                    </div>
-
-                    <div class="white-space-10"></div>
-
-                    <div class="block-title">
-                      <h3>Core <span>Stack</span></h3>
-                    </div>
-
-                    <ul class="knowledges">
-                      <li>AWS (EC2, RDS, S3, VPC)</li>
-                      <li>Kubernetes / OpenShift</li>
-                      <li>Golang & Java</li>
-                      <li>Terraform</li>
-                      <li>GitHub Actions</li>
-                      <li>Dynatrace / Prometheus</li>
-                      <li>Docker</li>
-                      <li>Python Scripting</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="white-space-50"></div>
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <div class="block-title">
-                      <h3>Certificates</h3>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-6">
-                    <a href="https://www.credly.com/badges/b57cf904-0e96-4559-a6ba-cb1ecd15b4c3/public_url" target="_blank" style="display: block;">
-                      <div class="certificate-item clearfix">
-                        <div class="certi-logo">
-                          <img src="assets/images/certificates/cloud_practitioner.png" alt="AWS Cloud Practitioner" />
-                        </div>
-                        <div class="certi-content">
-                          <div class="certi-title">
-                            <h4>AWS Certified Cloud Practitioner</h4>
-                          </div>
-                          <div class="certi-date">
-                            <span>Issued: Feb 2024</span>
-                          </div>
-                          <div class="certi-company">
-                            <span>Amazon Web Services</span>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  
-                  <div class="col-xs-12 col-sm-6">
-                    <div class="certificate-item clearfix" style="opacity: 0.7;">
-                      <div class="certi-logo">
-                        <img src="assets/images/certificates/cloud_practitioner.png" alt="AWS Solutions Architect" style="opacity: 0;" />
-                      </div>
-                      <div class="certi-content">
-                        <div class="certi-title">
-                          <h4>AWS Solutions Architect - Associate</h4>
-                        </div>
-                        <div class="certi-date">
-                          <span>Target: Jan 2026</span>
-                        </div>
-                        <div class="certi-company">
-                          <span>In Progress</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </section>
-            <!-- End of Resume Subpage -->
-
-
-
-            <!-- Portfolio Subpage -->
-            <section data-id="portfolio" class="animated-section">
-              <div class="section-content">
-                <div class="page-title">
-                  <h2>Projects</h2>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <!-- Portfolio Content -->
-                    <div class="portfolio-content">
-
-                      <ul class="portfolio-filters">
-                        <li class="active" data-filter="category_all">
-                          <a class="filter btn btn-sm btn-link" data-group="category_all">All</a>
-                        </li>
-                        <li data-filter="category_infrastructure">
-                          <a class="filter btn btn-sm btn-link" data-group="category_infrastructure">Infrastructure</a>
-                        </li>
-                        <li data-filter="category_observability">
-                          <a class="filter btn btn-sm btn-link" data-group="category_observability">Observability</a>
-                        </li>
-                        <li data-filter="category_resilience">
-                          <a class="filter btn btn-sm btn-link" data-group="category_resilience">Resilience</a>
-                        </li>
-                      </ul>
-
-                      <!-- Portfolio Grid -->
-                      <div class="portfolio-grid project-cards two-columns">
-                        
-                        <!-- Project 1: AWS Enterprise IaC -->
-                        <div class="project-card item" data-groups='["category_all", "category_infrastructure"]'>
-                          <div class="project-card-inner">
-                            <div class="project-card-icon-section">
-                              <i class="lnr lnr-cloud project-card-icon"></i>
-                              <span class="project-card-category">Infrastructure</span>
-                            </div>
-                            <div class="project-card-content-section">
-                              <h4 class="project-card-title">AWS Enterprise IaC</h4>
-                              <div class="project-card-tech">Terraform / CloudFormation</div>
-                              <p class="project-card-description">
-                                IaC templates for deploying secure VPCs and EC2 auto-scaling groups managing 170+ cloud instances.
-                              </p>
-                            </div>
-                          </div>
-                          <a href="portfolio-1.html" class="ajax-page-load project-card-link"></a>
-                        </div>
-
-                        <!-- Project 2: GitOps with OpenShift -->
-                        <div class="project-card item" data-groups='["category_all", "category_infrastructure"]'>
-                          <div class="project-card-inner">
-                            <div class="project-card-icon-section">
-                              <i class="fas fa-server project-card-icon"></i>
-                              <span class="project-card-category">Infrastructure</span>
-                            </div>
-                            <div class="project-card-content-section">
-                              <h4 class="project-card-title">GitOps with OpenShift</h4>
-                              <div class="project-card-tech">ArgoCD / Kubernetes</div>
-                              <p class="project-card-description">
-                                Automated deployment pipeline for 50+ microservices with multi-environment promotion strategy.
-                              </p>
-                            </div>
-                          </div>
-                          <a href="portfolio-2.html" class="ajax-page-load project-card-link"></a>
-                        </div>
-
-                        <!-- Project 3: Golden Signals Observability -->
-                        <div class="project-card item" data-groups='["category_all", "category_observability"]'>
-                          <div class="project-card-inner">
-                            <div class="project-card-icon-section">
-                              <i class="fas fa-chart-line project-card-icon"></i>
-                              <span class="project-card-category">Observability</span>
-                            </div>
-                            <div class="project-card-content-section">
-                              <h4 class="project-card-title">Golden Signals Observability</h4>
-                              <div class="project-card-tech">Dynatrace / Prometheus</div>
-                              <p class="project-card-description">
-                                Monitoring platform implementing Golden Signals for banking systems ensuring 99.9% uptime.
-                              </p>
-                            </div>
-                          </div>
-                          <a href="portfolio-3.html" class="ajax-page-load project-card-link"></a>
-                        </div>
-
-                        <!-- Project 4: Chaos Engineering Automated -->
-                        <div class="project-card item" data-groups='["category_all", "category_resilience"]'>
-                          <div class="project-card-inner">
-                            <div class="project-card-icon-section">
-                              <i class="fas fa-shield-alt project-card-icon"></i>
-                              <span class="project-card-category">Resilience</span>
-                            </div>
-                            <div class="project-card-content-section">
-                              <h4 class="project-card-title">Chaos Engineering Automated</h4>
-                              <div class="project-card-tech">Chaos Toolkit / Gremlin</div>
-                              <p class="project-card-description">
-                                Testing resilience in K8s clusters simulating pod failures and network latency issues.
-                              </p>
-                            </div>
-                          </div>
-                          <a href="portfolio-4.html" class="ajax-page-load project-card-link"></a>
-                        </div>
-
-                      </div>
-                    </div>
-                    <!-- End of Portfolio Content -->
+                  <div>
+                    <p class="contact-item-label">Availability</p>
+                    <p class="contact-item-value" style="color:var(--jade);">Available for Freelance</p>
                   </div>
                 </div>
               </div>
-            </section>
-            <!-- End of Portfolio Subpage -->
 
-            <!-- Contact Subpage -->
-            <section data-id="contact" class="animated-section">
-              <div class="section-content">
-                <div class="page-title">
-                  <h2>Contact</h2>
-                </div>
+              <!-- Map -->
+              <div class="contact-map" id="map" aria-label="Map showing Medellín, Colombia"></div>
+            </div>
 
-                <div class="row">
-                  <div class="col-xs-12 col-sm-4">
-                    
-                    <div class="lm-info-block gray-default">
-                      <i class="lnr lnr-map-marker"></i>
-                      <h4>Medellín, Colombia</h4>
-                      <span class="lm-info-block-value"></span>
-                      <span class="lm-info-block-text"></span>
-                    </div>
-
-                    <div class="lm-info-block gray-default">
-                      <i class="lnr lnr-phone-handset"></i>
-                      <h4>(+57) 300 529 8170</h4>
-                      <span class="lm-info-block-value"></span>
-                      <span class="lm-info-block-text"></span>
-                    </div>
-
-                    <div class="lm-info-block gray-default">
-                      <i class="lnr lnr-envelope"></i>
-                      <h4>contact@edwardsuarez.com</h4>
-                      <span class="lm-info-block-value"></span>
-                      <span class="lm-info-block-text"></span>
-                    </div>
-
-                    <div class="lm-info-block gray-default">
-                      <i class="lnr lnr-checkmark-circle"></i>
-                      <h4>Available for Freelance</h4>
-                      <span class="lm-info-block-value"></span>
-                      <span class="lm-info-block-text"></span>
-                    </div>
+            <!-- Form -->
+            <div class="contact-form-wrap reveal reveal-delay-2">
+              <h3>Send a Message</h3>
+              <form
+                id="contact_form"
+                action="https://formspree.io/f/xzzqvybn"
+                method="POST"
+                novalidate
+              >
+                <div class="form-row two-col" style="margin-bottom: var(--s3);">
+                  <div class="form-field">
+                    <label for="form_name">Full Name</label>
+                    <input type="text" id="form_name" name="name" required autocomplete="name" placeholder="John Doe" />
                   </div>
-
-                  <div class="col-xs-12 col-sm-8">
-                    <div id="map" class="map"></div>
-                    
-                    <div class="block-title">
-                      <h3>Let's <span>Talk Business</span></h3>
-                    </div>
-
-                    <form
-                      id="contact_form"
-                      class="contact-form"
-                      action="https://formspree.io/f/xzzqvybn"
-                      method="POST"
-                    >
-                      <div class="messages"></div>
-
-                      <div class="controls two-columns">
-                        <div class="fields clearfix">
-                          <div class="left-column">
-                            <div class="form-group form-group-with-icon">
-                              <input
-                                id="form_name"
-                                type="text"
-                                name="name"
-                                class="form-control"
-                                placeholder=""
-                                required="required"
-                                data-error="Name is required."
-                              />
-                              <label>Full Name</label>
-                              <div class="form-control-border"></div>
-                              <div class="help-block with-errors"></div>
-                            </div>
-
-                            <div class="form-group form-group-with-icon">
-                              <input
-                                id="form_email"
-                                type="email"
-                                name="email"
-                                class="form-control"
-                                placeholder=""
-                                required="required"
-                                data-error="Valid email is required."
-                              />
-                              <label>Email Address</label>
-                              <div class="form-control-border"></div>
-                              <div class="help-block with-errors"></div>
-                            </div>
-
-                            <div class="form-group form-group-with-icon">
-                              <input
-                                id="form_subject"
-                                type="text"
-                                name="subject"
-                                class="form-control"
-                                placeholder=""
-                                required="required"
-                                data-error="Subject is required."
-                              />
-                              <label>Subject</label>
-                              <div class="form-control-border"></div>
-                              <div class="help-block with-errors"></div>
-                            </div>
-                          </div>
-                          <div class="right-column">
-                            <div class="form-group form-group-with-icon">
-                              <textarea
-                                id="form_message"
-                                name="message"
-                                class="form-control"
-                                placeholder=""
-                                rows="7"
-                                required="required"
-                                data-error="Please, leave me a message."
-                              ></textarea>
-                              <label>Message</label>
-                              <div class="form-control-border"></div>
-                              <div class="help-block with-errors"></div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div
-                          class="g-recaptcha"
-                          data-sitekey="6LdqmCAUAAAAAMMNEZvn6g4W5e0or2sZmAVpxVqI"
-                        ></div>
-
-                        <input
-                          type="submit"
-                          class="button btn-send"
-                          value="Send Message"
-                        />
-                      </div>
-                    </form>
+                  <div class="form-field">
+                    <label for="form_email">Email</label>
+                    <input type="email" id="form_email" name="email" required autocomplete="email" placeholder="john@company.com" />
                   </div>
                 </div>
-              </div>
-            </section>
-            <!-- End of Contact Subpage -->
+                <div class="form-field" style="margin-bottom: var(--s3);">
+                  <label for="form_subject">Subject</label>
+                  <input type="text" id="form_subject" name="subject" required placeholder="Project inquiry / Consulting" />
+                </div>
+                <div class="form-field" style="margin-bottom: var(--s3);">
+                  <label for="form_message">Message</label>
+                  <textarea id="form_message" name="message" required rows="6" placeholder="Tell me about your project…"></textarea>
+                </div>
+                <div class="recaptcha-wrap">
+                  <div class="g-recaptcha" data-sitekey="6LdqmCAUAAAAAMMNEZvn6g4W5e0or2sZmAVpxVqI"></div>
+                </div>
+                <div class="form-footer">
+                  <button type="submit" class="btn btn-primary" id="form_submit">Send Message</button>
+                </div>
+                <div id="form_feedback" role="alert" aria-live="polite" style="margin-top:var(--s3); font-size:0.88rem;"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ── Footer ─────────────────────────────────────── -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container footer-inner">
+        <p class="footer-copy">© 2025 Edward Suarez. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/edsuarezs/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+          <a href="https://github.com/edsuarezs" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fab fa-github" aria-hidden="true"></i>
+          </a>
+          <a href="https://twitter.com/edsuarezs" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <i class="fab fa-twitter" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ── Project Modal ──────────────────────────────── -->
+    <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-label="Project details" aria-hidden="true">
+      <div class="modal-backdrop" id="modal-backdrop"></div>
+      <div class="modal-box">
+        <button class="modal-close" id="modal-close" aria-label="Close project details">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        <div class="modal-content" id="modal-content">
+          <div style="padding: var(--s8); text-align:center; color:var(--muted);">
+            <div class="preloader-ring" style="margin:0 auto;"></div>
           </div>
         </div>
       </div>
     </div>
-    <script src="js/calculateAge.js"></script>
-    <!-- Contact Popup -->
-    <div id="contact-popup" class="contact-popup">
-        <div class="contact-popup-content">
-            <span class="contact-popup-close">&times;</span>
-            <div id="popup-icon" class="popup-icon"></div>
-            <h3 id="popup-title">Title</h3>
-            <p id="popup-message" style="color: #ccc;">Message content</p>
-        </div>
-    </div>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/modernizr.custom.js"></script>
-    <script src="js/animating.js"></script>
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-    <script src="js/perfect-scrollbar.min.js"></script>
-    <script src="js/jquery.shuffle.min.js"></script>
-    <script src="js/masonry.pkgd.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.googlemap.js"></script>
-    <script src="js/validator.js"></script>
-    <script src="js/portfolio-filter.js"></script>
-    <script src="js/main.js"></script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCc7q41K4OMilU4QWfEVlZt5tgXzzMLy8o&callback=initMap&loading=async&libraries=marker">
-    </script>
-  
+    <!-- Scripts -->
+    <script src="js/app.js" defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script
+      async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCc7q41K4OMilU4QWfEVlZt5tgXzzMLy8o&callback=initMap&loading=async&libraries=marker"
+    ></script>
   </body>
 </html>
