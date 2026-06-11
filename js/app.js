@@ -319,6 +319,14 @@ function initContactForm() {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
 
+    /* reCAPTCHA validation — must be completed before sending */
+    const captchaToken = window.grecaptcha ? window.grecaptcha.getResponse() : null;
+    if (!captchaToken) {
+      feedback.style.color = 'var(--flare)';
+      feedback.textContent = '✗ Please complete the reCAPTCHA verification before sending.';
+      return;
+    }
+
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending…';
     feedback.textContent = '';
@@ -334,12 +342,14 @@ function initContactForm() {
         feedback.style.color = 'var(--jade)';
         feedback.textContent = '✓ Message sent! I\'ll get back to you soon.';
         form.reset();
+        if (window.grecaptcha) window.grecaptcha.reset();
       } else {
         throw new Error('Form submission failed');
       }
     } catch {
       feedback.style.color = 'var(--flare)';
       feedback.textContent = '✗ Something went wrong. Please email me directly at contact@edwardsuarez.com';
+      if (window.grecaptcha) window.grecaptcha.reset();
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Send Message';
