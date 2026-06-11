@@ -249,11 +249,11 @@ function initProjectModal() {
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
 }
 
-/* ── Testimonials Scroll ──────────────────────────────────── */
+/* ── Testimonials Scroll + Mouse Drag ────────────────────── */
 function initTestimonialsNav() {
-  const track  = document.getElementById('testimonials-track');
-  const prev   = document.getElementById('test-prev');
-  const next   = document.getElementById('test-next');
+  const track = document.getElementById('testimonials-track');
+  const prev  = document.getElementById('test-prev');
+  const next  = document.getElementById('test-next');
   if (!track || !prev || !next) return;
 
   const card = track.querySelector('.testimonial-card');
@@ -261,6 +261,51 @@ function initTestimonialsNav() {
 
   prev.addEventListener('click', () => track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
   next.addEventListener('click', () => track.scrollBy({ left:  scrollAmount(), behavior: 'smooth' }));
+
+  /* Mouse drag-to-scroll */
+  let isDragging = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+  let didDrag = false;
+
+  track.addEventListener('mousedown', e => {
+    isDragging = true;
+    didDrag = false;
+    startX = e.pageX - track.offsetLeft;
+    startScrollLeft = track.scrollLeft;
+    track.style.cursor = 'grabbing';
+    track.style.userSelect = 'none';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    const x    = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.2;
+    if (Math.abs(walk) > 4) didDrag = true;
+    track.scrollLeft = startScrollLeft - walk;
+  });
+
+  const stopDrag = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.style.cursor = 'grab';
+    track.style.userSelect = '';
+    if (didDrag) {
+      /* Snap to nearest card after drag */
+      const snapTo = Math.round(track.scrollLeft / scrollAmount()) * scrollAmount();
+      track.scrollTo({ left: snapTo, behavior: 'smooth' });
+    }
+  };
+  document.addEventListener('mouseup',    stopDrag);
+  document.addEventListener('mouseleave', stopDrag);
+
+  /* Prevent click on links inside cards when user was dragging */
+  track.addEventListener('click', e => {
+    if (didDrag) e.preventDefault();
+  }, true);
+
+  track.style.cursor = 'grab';
 }
 
 /* ── Contact Form ─────────────────────────────────────────── */

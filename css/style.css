@@ -851,11 +851,11 @@ em, .accent { color: var(--jade); font-style: normal; }
   gap: var(--s6) var(--s8);
 }
 .company-logo {
-  height: 56px;
+  height: 80px;
   width: auto;
-  max-width: 140px;
-  opacity: 0.55;
-  filter: grayscale(1) brightness(1.4);
+  max-width: 180px;
+  opacity: 0.65;
+  filter: grayscale(1) brightness(1.6);
   transition: opacity var(--tr), filter var(--tr), transform var(--tr);
   object-fit: contain;
   flex-shrink: 0;
