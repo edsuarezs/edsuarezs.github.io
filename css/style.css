@@ -843,33 +843,28 @@ em, .accent { color: var(--jade); font-style: normal; }
   color: var(--muted);
   margin-bottom: var(--s6);
 }
-.companies-scroll {
-  overflow: hidden;
-  -webkit-mask: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-  mask: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-}
-.companies-track {
+.companies-static {
   display: flex;
-  gap: var(--s8);
+  justify-content: center;
   align-items: center;
-  width: max-content;
-  animation: marquee 22s linear infinite;
-}
-.companies-track:hover { animation-play-state: paused; }
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  flex-wrap: wrap;
+  gap: var(--s6) var(--s8);
 }
 .company-logo {
-  height: 36px;
+  height: 56px;
   width: auto;
-  opacity: 0.4;
-  filter: grayscale(1);
-  transition: opacity var(--tr), filter var(--tr);
-  flex-shrink: 0;
+  max-width: 140px;
+  opacity: 0.55;
+  filter: grayscale(1) brightness(1.4);
+  transition: opacity var(--tr), filter var(--tr), transform var(--tr);
   object-fit: contain;
+  flex-shrink: 0;
 }
-.companies-track:hover .company-logo:hover { opacity: 0.9; filter: none; }
+.company-logo:hover {
+  opacity: 1;
+  filter: none;
+  transform: scale(1.06);
+}
 
 /* ── Pricing ──────────────────────────────────────────────── */
 .pricing-grid {
@@ -1847,10 +1842,7 @@ em, .accent { color: var(--jade); font-style: normal; }
   transform: scale(1.08);
 }
 
-/* 6 — Companies: larger logos, more visible, centered label */
-.companies-label { text-align: center; margin-bottom: var(--s4); }
-.company-logo    { height: 48px; opacity: 0.6; }
-.companies-track { gap: 5rem; align-items: center; }
+/* 6 — Companies: handled in base CSS block above */
 
 /* 7 — Pulse-line: animated ECG stroke */
 .pulse-path {
