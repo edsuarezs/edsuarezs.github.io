@@ -224,6 +224,16 @@ function initProjectModal() {
           <span style="font-size:0.78rem;color:var(--muted);margin-right:var(--s1);font-family:var(--f-mono);text-transform:uppercase;letter-spacing:0.06em;">Share</span>
           ${shareHTML}
         </div>` : ''}
+      <div class="modal-book-cta">
+        <p>Interested in building something like this?</p>
+        <a
+          href="https://calendly.com/edsuarez0299/1-1-technical-consultation?utm_source=project-modal&utm_campaign=portfolio_booking"
+          class="btn btn-primary open-calendly"
+          data-utm="project-modal"
+        >
+          <i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;Schedule a Discovery Call
+        </a>
+      </div>
     `;
   }
 
@@ -329,6 +339,100 @@ window.initMap = function() {
   });
 };
 
+/* ── Calendly Popup — Event Delegation ───────────────────── */
+function initCalendlyLinks() {
+  const BASE  = 'https://calendly.com/edsuarez0299/1-1-technical-consultation';
+  const THEME = 'background_color=142035&text_color=ebf2fa&primary_color=00d9a6';
+
+  document.addEventListener('click', e => {
+    const el = e.target.closest('.open-calendly');
+    if (!el) return;
+    e.preventDefault();
+    const utm = el.dataset.utm || 'website';
+    const url = `${BASE}?${THEME}&utm_source=${utm}&utm_campaign=portfolio_booking`;
+    if (window.Calendly && typeof Calendly.initPopupWidget === 'function') {
+      Calendly.initPopupWidget({ url });
+    } else {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  });
+}
+
+/* ── Floating Action Button ──────────────────────────────── */
+function initFAB() {
+  const fab  = document.getElementById('fab-booking');
+  const hero = document.getElementById('hero');
+  if (!fab || !hero) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => fab.classList.toggle('fab-visible', !entry.isIntersecting),
+    { threshold: 0.15 }
+  );
+  observer.observe(hero);
+}
+
+/* ── Scroll Progress Bar ─────────────────────────────────── */
+function initScrollProgress() {
+  const bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total    = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = total > 0 ? `${(scrolled / total) * 100}%` : '0%';
+  }, { passive: true });
+}
+
+/* ── Back to Top ─────────────────────────────────────────── */
+function initBackToTop() {
+  const btn  = document.getElementById('back-to-top');
+  const hero = document.getElementById('hero');
+  if (!btn || !hero) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => btn.classList.toggle('btt-visible', !entry.isIntersecting),
+    { threshold: 0.15 }
+  );
+  observer.observe(hero);
+
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
+
+/* ── Stats Counter Animation ─────────────────────────────── */
+function initStatsCounters() {
+  const counters = document.querySelectorAll('.stat-number');
+  if (!counters.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      observer.unobserve(entry.target);
+
+      const el     = entry.target;
+      const text   = el.textContent.trim();
+      const match  = text.match(/^([\d.]+)(.*)$/);
+      if (!match) return;
+
+      const target   = parseFloat(match[1]);
+      const suffix   = match[2];
+      const isFloat  = match[1].includes('.');
+      const duration = 1600;
+      const start    = performance.now();
+
+      function tick(now) {
+        const p    = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        const val  = target * ease;
+        el.textContent = (isFloat ? val.toFixed(1) : Math.floor(val)) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.6 });
+
+  counters.forEach(c => observer.observe(c));
+}
+
 /* ── Init ─────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   /* Age */
@@ -345,4 +449,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjectModal();
   initTestimonialsNav();
   initContactForm();
+  initCalendlyLinks();
+  initFAB();
+  initScrollProgress();
+  initBackToTop();
+  initStatsCounters();
 });
