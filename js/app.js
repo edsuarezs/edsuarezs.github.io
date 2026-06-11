@@ -198,7 +198,7 @@ function initProjectModal() {
     });
 
     /* Build images list */
-    const imgs = doc.querySelectorAll('.owl-carousel .item img');
+    const imgs = doc.querySelectorAll('.project-images img');
     const imageHTML = Array.from(imgs).map(img =>
       `<img src="${img.getAttribute('src')}" alt="${img.getAttribute('alt') || ''}" loading="lazy" />`
     ).join('');
