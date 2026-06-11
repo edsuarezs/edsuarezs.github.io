@@ -1798,3 +1798,193 @@ em, .accent { color: var(--jade); font-style: normal; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 7pt; color: #777; word-break: break-all; }
   .btn::after, .nav-cta::after, .about-actions a::after { content: none !important; }
 }
+
+/* ============================================================
+   UI FIXES v2 — June 2026
+   ============================================================ */
+
+/* 1 — Section title em: no italic, use jade accent color */
+.section-title em {
+  font-style: normal;
+  color: var(--jade);
+  font-weight: inherit;
+}
+
+/* 2 — Global font size bumps */
+.testimonial-text  { font-size: 1rem; }
+.stat-label        { font-size: 1rem; }
+.stat-sub          { font-size: 0.78rem; }
+.skill-tag         { font-size: 0.82rem; padding: 0.32rem 0.78rem; }
+.cert-info h4      { font-size: 1rem; }
+.tl-desc           { font-size: 0.94rem; }
+.service-card p    { font-size: 0.94rem; }
+.booking-cta-eyebrow { font-size: 0.85rem; }
+
+/* 3 — Skills: on mobile show Skills column ABOVE Experience */
+@media (max-width: 899px) {
+  .resume-grid { display: flex; flex-direction: column; }
+  .resume-grid > div:nth-child(2) { order: -1; }
+}
+
+/* 4 — Cert cards: more breathing room */
+.cert-card  { padding: var(--s3) var(--s3); gap: var(--s3); }
+.cert-logo  { width: 56px; height: 56px; }
+
+/* 5 — Testimonials nav: bigger, centered, more prominent */
+.testimonials-nav {
+  justify-content: center;
+  gap: var(--s3);
+  margin-top: 2.5rem;
+}
+.testimonials-nav button {
+  width: 52px; height: 52px;
+  font-size: 1rem;
+  border-width: 1.5px;
+  background: var(--surface-2);
+}
+.testimonials-nav button:hover {
+  background: var(--jade-dim);
+  transform: scale(1.08);
+}
+
+/* 6 — Companies: larger logos, more visible, centered label */
+.companies-label { text-align: center; margin-bottom: var(--s4); }
+.company-logo    { height: 48px; opacity: 0.6; }
+.companies-track { gap: 5rem; align-items: center; }
+
+/* 7 — Pulse-line: animated ECG stroke */
+.pulse-path {
+  stroke-dasharray: 1500;
+  stroke-dashoffset: 1500;
+  animation: ecg-draw 4s ease-in-out infinite;
+}
+@keyframes ecg-draw {
+  0%   { stroke-dashoffset: 1500; opacity: 0; }
+  8%   { opacity: 1; }
+  65%  { stroke-dashoffset: 0;    opacity: 1; }
+  80%  { stroke-dashoffset: 0;    opacity: 0; }
+  100% { stroke-dashoffset: 1500; opacity: 0; }
+}
+
+/* 8 — Stats: gradient number, icon, progress bar, richer card */
+.stat-icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--jade-dim), var(--flare-dim));
+  color: var(--jade);
+  display: grid; place-items: center;
+  font-size: 1.25rem;
+  margin: 0 auto var(--s2);
+  transition: transform 0.35s ease;
+}
+.stat-card:hover .stat-icon { transform: scale(1.12) rotate(-4deg); }
+
+.stat-number {
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  background: linear-gradient(135deg, var(--jade) 30%, var(--flare));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.03em;
+}
+
+.stat-card {
+  padding: 2.5rem var(--s4) var(--s4);
+  background: linear-gradient(160deg, var(--surface-2) 0%, rgba(0,217,166,0.04) 100%);
+  transition: transform var(--tr), border-color var(--tr), box-shadow var(--tr);
+}
+.stat-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0,217,166,0.3);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35), 0 0 30px rgba(0,217,166,0.1);
+}
+
+.stat-bar {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: var(--s3);
+  overflow: hidden;
+}
+.stat-bar-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--jade), var(--flare));
+  border-radius: 2px;
+  transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stat-card.visible .stat-bar-fill { width: var(--fill); }
+
+/* 9 — Contact: quick info row + full-width action buttons */
+.contact-quick-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s4);
+  margin-bottom: var(--s4);
+  padding-bottom: var(--s4);
+  border-bottom: 1px solid var(--border-2);
+}
+.contact-quick-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.contact-quick-item.avail-item { color: var(--jade); font-weight: 500; }
+.contact-quick-item i { font-size: 0.85rem; }
+
+.contact-action-btns {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  margin-bottom: var(--s4);
+}
+.contact-action-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s3);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  text-decoration: none;
+  transition: transform var(--tr), border-color var(--tr), background var(--tr), box-shadow var(--tr);
+}
+.contact-action-btn:hover {
+  transform: translateX(5px);
+  border-color: rgba(0,217,166,0.35);
+  background: rgba(0,217,166,0.04);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.cab-icon {
+  width: 50px; height: 50px;
+  border-radius: 14px;
+  display: grid; place-items: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  transition: transform var(--tr);
+}
+.contact-action-btn:hover .cab-icon { transform: scale(1.08); }
+.wa-btn    .cab-icon { background: rgba(37,211,102,0.12); color: #25D366; }
+.email-btn .cab-icon { background: var(--jade-dim);        color: var(--jade); }
+.phone-btn .cab-icon { background: rgba(78,127,160,0.15); color: var(--steel); }
+.cab-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.cab-body strong { font-size: 0.98rem; color: var(--text);  font-weight: 600; }
+.cab-body span   { font-size: 0.82rem; color: var(--muted); }
+.cab-arrow { color: var(--muted); font-size: 0.85rem; transition: transform var(--tr), color var(--tr); }
+.contact-action-btn:hover .cab-arrow { transform: translateX(3px); color: var(--jade); }
+
+/* Hide old contact-info and contact-item if they remain */
+.contact-info { display: none; }
+
+/* 10 — Stat-bar fill animation trigger fix for print */
+@media print {
+  .stat-icon, .stat-bar { display: none; }
+}

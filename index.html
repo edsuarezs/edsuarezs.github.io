@@ -286,19 +286,25 @@
         <div class="container">
           <div class="stats-grid">
             <div class="stat-card reveal">
+              <div class="stat-icon" aria-hidden="true"><i class="fas fa-layer-group"></i></div>
               <span class="stat-number">5+</span>
               <span class="stat-label">Years Experience</span>
               <span class="stat-sub">DevSecOps &amp; Backend Engineering</span>
+              <div class="stat-bar" aria-hidden="true"><div class="stat-bar-fill" style="--fill:85%"></div></div>
             </div>
             <div class="stat-card reveal reveal-delay-2">
+              <div class="stat-icon" aria-hidden="true"><i class="fas fa-cloud"></i></div>
               <span class="stat-number">170+</span>
               <span class="stat-label">Cloud Instances</span>
               <span class="stat-sub">Orchestrated &amp; Managed</span>
+              <div class="stat-bar" aria-hidden="true"><div class="stat-bar-fill" style="--fill:92%"></div></div>
             </div>
             <div class="stat-card reveal reveal-delay-4">
+              <div class="stat-icon" aria-hidden="true"><i class="fas fa-rocket"></i></div>
               <span class="stat-number">66%</span>
               <span class="stat-label">Faster Deploys</span>
               <span class="stat-sub">90 min → 30 min at Banco Santander</span>
+              <div class="stat-bar" aria-hidden="true"><div class="stat-bar-fill" style="--fill:66%"></div></div>
             </div>
           </div>
         </div>
@@ -941,52 +947,57 @@
 
           <div class="contact-grid">
             <div class="reveal">
-              <div class="contact-info">
-                <div class="contact-item">
-                  <div class="contact-item-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></div>
-                  <div>
-                    <p class="contact-item-label">Location</p>
-                    <p class="contact-item-value">Medellín, Colombia</p>
+              <!-- Quick info row -->
+              <div class="contact-quick-info">
+                <span class="contact-quick-item">
+                  <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                  Medellín, Colombia · Remote-ready
+                </span>
+                <span class="contact-quick-item avail-item">
+                  <span class="avail-dot" aria-hidden="true"></span>
+                  Available for Freelance
+                </span>
+              </div>
+
+              <!-- Full-width action buttons -->
+              <div class="contact-action-btns">
+                <a
+                  href="https://wa.me/573005298170?text=Hi%20Edward!%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
+                  class="contact-action-btn wa-btn"
+                  target="_blank" rel="noopener noreferrer"
+                  aria-label="WhatsApp Edward Suarez"
+                >
+                  <div class="cab-icon" aria-hidden="true"><i class="fab fa-whatsapp"></i></div>
+                  <div class="cab-body">
+                    <strong>WhatsApp</strong>
+                    <span>(+57) 300 529 8170</span>
                   </div>
-                </div>
-                <div class="contact-item">
-                  <div class="contact-item-icon" aria-hidden="true"><i class="fas fa-phone"></i></div>
-                  <div>
-                    <p class="contact-item-label">Phone</p>
-                    <p class="contact-item-value">
-                      <a href="tel:+573005298170">(+57) 300 529 8170</a>
-                    </p>
+                  <i class="fas fa-chevron-right cab-arrow" aria-hidden="true"></i>
+                </a>
+                <a
+                  href="mailto:contact@edwardsuarez.com"
+                  class="contact-action-btn email-btn"
+                  aria-label="Email Edward Suarez"
+                >
+                  <div class="cab-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
+                  <div class="cab-body">
+                    <strong>Email</strong>
+                    <span>contact@edwardsuarez.com</span>
                   </div>
-                </div>
-                <div class="contact-item">
-                  <div class="contact-item-icon" aria-hidden="true" style="background:rgba(37,211,102,0.1);">
-                    <i class="fab fa-whatsapp" style="color:#25D366;" aria-hidden="true"></i>
+                  <i class="fas fa-chevron-right cab-arrow" aria-hidden="true"></i>
+                </a>
+                <a
+                  href="tel:+573005298170"
+                  class="contact-action-btn phone-btn"
+                  aria-label="Call Edward Suarez"
+                >
+                  <div class="cab-icon" aria-hidden="true"><i class="fas fa-phone"></i></div>
+                  <div class="cab-body">
+                    <strong>Phone</strong>
+                    <span>(+57) 300 529 8170</span>
                   </div>
-                  <div>
-                    <p class="contact-item-label">WhatsApp</p>
-                    <p class="contact-item-value">
-                      <a href="https://wa.me/573005298170?text=Hi%20Edward!%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">(+57) 300 529 8170</a>
-                    </p>
-                  </div>
-                </div>
-                <div class="contact-item">
-                  <div class="contact-item-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
-                  <div>
-                    <p class="contact-item-label">Email</p>
-                    <p class="contact-item-value">
-                      <a href="mailto:contact@edwardsuarez.com">contact@edwardsuarez.com</a>
-                    </p>
-                  </div>
-                </div>
-                <div class="contact-item">
-                  <div class="contact-item-icon" aria-hidden="true" style="background:rgba(0,217,166,0.1);">
-                    <i class="fas fa-check-circle" style="color:var(--jade);"></i>
-                  </div>
-                  <div>
-                    <p class="contact-item-label">Availability</p>
-                    <p class="contact-item-value" style="color:var(--jade);">Available for Freelance</p>
-                  </div>
-                </div>
+                  <i class="fas fa-chevron-right cab-arrow" aria-hidden="true"></i>
+                </a>
               </div>
 
               <!-- Map -->
