@@ -478,6 +478,80 @@ function initStatsCounters() {
   counters.forEach(c => observer.observe(c));
 }
 
+/* ── Companies Marquee — right-to-left, enters from right ─── */
+function initCompaniesMarquee() {
+  const track  = document.getElementById('companies-track');
+  const source = document.querySelector('.companies-source');
+  if (!track || !source) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    /* Reduced motion: just show logos statically */
+    source.style.display = 'flex';
+    source.style.flexWrap = 'wrap';
+    source.style.justifyContent = 'center';
+    source.style.gap = '2rem';
+    track.closest('.companies-marquee').style.display = 'none';
+    return;
+  }
+
+  const GAP   = 80;   /* px between logos */
+  const SPEED = 0.9;  /* px per frame     */
+
+  /* Collect source logos and measure them after layout */
+  const srcLogos = Array.from(source.querySelectorAll('.company-logo'));
+
+  /* Clone enough copies to always overflow the viewport (4 sets) */
+  const clones = [];
+  for (let set = 0; set < 4; set++) {
+    srcLogos.forEach(logo => {
+      const cl = logo.cloneNode(true);
+      cl.removeAttribute('alt'); /* duplicates are decorative */
+      track.appendChild(cl);
+      clones.push(cl);
+    });
+  }
+
+  /* Wait one frame so images have natural widths */
+  requestAnimationFrame(() => {
+    const containerW = track.parentElement.offsetWidth;
+
+    /* Measure each clone's rendered width */
+    const items = clones.map(el => ({
+      el,
+      w: el.offsetWidth || 120,
+      x: 0,
+    }));
+
+    /* Place logos starting from the RIGHT edge, spaced outward */
+    let cursor = containerW; /* first logo starts just beyond right edge */
+    items.forEach(item => {
+      item.x = cursor;
+      cursor += item.w + GAP;
+    });
+
+    let paused = false;
+    track.parentElement.addEventListener('mouseenter', () => paused = true);
+    track.parentElement.addEventListener('mouseleave', () => paused = false);
+
+    /* Find the rightmost x among all items */
+    const maxX = () => items.reduce((m, it) => Math.max(m, it.x + it.w), -Infinity);
+
+    function tick() {
+      if (!paused) {
+        items.forEach(item => {
+          item.x -= SPEED;
+          /* Recycle: when fully off-screen left, jump to after the rightmost item */
+          if (item.x + item.w < 0) {
+            item.x = maxX() + GAP;
+          }
+          item.el.style.transform = `translateX(${item.x}px) translateY(-50%)`;
+        });
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+  });
+}
+
 /* ── Init ─────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   /* Age */
@@ -499,4 +573,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollProgress();
   initBackToTop();
   initStatsCounters();
+  initCompaniesMarquee();
 });

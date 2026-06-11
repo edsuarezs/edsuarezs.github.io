@@ -854,13 +854,17 @@
       <section class="companies" aria-label="Companies I have worked with">
         <div class="container">
           <p class="companies-label">I have worked at</p>
-          <div class="companies-static">
-            <img src="assets/images/clients/client-1.png" alt="Pragma"       class="company-logo" />
-            <img src="assets/images/clients/client-2.png" alt="MercadoLibre" class="company-logo" />
-            <img src="assets/images/clients/client-3.png" alt="SETI SAS"     class="company-logo" />
-            <img src="assets/images/clients/client-4.png" alt="Integ.ro"     class="company-logo" />
-            <img src="assets/images/clients/client-5.png" alt="CESDE"        class="company-logo" />
-          </div>
+        </div>
+        <!-- logos data — JS picks these up and animates them -->
+        <div class="companies-source" aria-hidden="true" style="display:none;">
+          <img src="assets/images/clients/client-1.png" alt="Pragma"       class="company-logo" />
+          <img src="assets/images/clients/client-2.png" alt="MercadoLibre" class="company-logo" />
+          <img src="assets/images/clients/client-3.png" alt="SETI SAS"     class="company-logo" />
+          <img src="assets/images/clients/client-4.png" alt="Integ.ro"     class="company-logo" />
+          <img src="assets/images/clients/client-5.png" alt="CESDE"        class="company-logo" />
+        </div>
+        <div class="companies-marquee" aria-hidden="true">
+          <div class="companies-track" id="companies-track"></div>
         </div>
       </section>
 

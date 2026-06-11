@@ -843,27 +843,33 @@ em, .accent { color: var(--jade); font-style: normal; }
   color: var(--muted);
   margin-bottom: var(--s6);
 }
-.companies-static {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--s6) var(--s8);
+.companies-marquee {
+  overflow: hidden;
+  position: relative;
+  height: 100px;
+  /* fade only left edge so logos clearly enter from the right */
+  -webkit-mask: linear-gradient(90deg, transparent 0%, #000 6%, #000 100%);
+  mask: linear-gradient(90deg, transparent 0%, #000 6%, #000 100%);
+}
+.companies-track {
+  position: relative;
+  height: 100%;
 }
 .company-logo {
-  height: 80px;
+  position: absolute;
+  top: 50%;
+  height: 70px;
   width: auto;
-  max-width: 180px;
+  max-width: 160px;
+  object-fit: contain;
   opacity: 0.65;
   filter: grayscale(1) brightness(1.6);
-  transition: opacity var(--tr), filter var(--tr), transform var(--tr);
-  object-fit: contain;
-  flex-shrink: 0;
+  transition: opacity 0.25s, filter 0.25s;
+  will-change: transform;
 }
 .company-logo:hover {
   opacity: 1;
   filter: none;
-  transform: scale(1.06);
 }
 
 /* ── Pricing ──────────────────────────────────────────────── */
@@ -1842,7 +1848,7 @@ em, .accent { color: var(--jade); font-style: normal; }
   transform: scale(1.08);
 }
 
-/* 6 — Companies: handled in base CSS block above */
+/* 6 — Companies: styles in base block; animation via initCompaniesMarquee() */
 
 /* 7 — Pulse-line: animated ECG stroke */
 .pulse-path {
