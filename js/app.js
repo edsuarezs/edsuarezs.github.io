@@ -3,14 +3,6 @@
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
 
-function initPreloader() {
-  const preloader = $(".preloader");
-  if (!preloader) return;
-  window.addEventListener("load", () => {
-    window.setTimeout(() => preloader.classList.add("done"), 180);
-  });
-}
-
 function initMobileNav() {
   const toggle = $(".nav-toggle");
   const links = $("#nav-links");
@@ -117,8 +109,36 @@ function initBackToTop() {
 function initCalendly() {
   const base = "https://calendly.com/edsuarez0299/1-1-technical-consultation";
   const theme = "background_color=070b12&text_color=eef4f8&primary_color=3ee6b5";
+  let loadingPromise = null;
 
-  document.addEventListener("click", (event) => {
+  function loadCalendlyAssets() {
+    if (window.Calendly && typeof window.Calendly.initPopupWidget === "function") {
+      return Promise.resolve();
+    }
+
+    if (loadingPromise) return loadingPromise;
+
+    loadingPromise = new Promise((resolve, reject) => {
+      if (!document.querySelector("link[data-calendly-css]")) {
+        const css = document.createElement("link");
+        css.rel = "stylesheet";
+        css.href = "https://assets.calendly.com/assets/external/widget.css";
+        css.dataset.calendlyCss = "true";
+        document.head.appendChild(css);
+      }
+
+      const script = document.createElement("script");
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error("Calendly failed to load"));
+      document.head.appendChild(script);
+    });
+
+    return loadingPromise;
+  }
+
+  document.addEventListener("click", async (event) => {
     const link = event.target.closest(".open-calendly");
     if (!link) return;
     event.preventDefault();
@@ -126,9 +146,10 @@ function initCalendly() {
     const utm = link.dataset.utm || "portfolio";
     const url = `${base}?${theme}&utm_source=${encodeURIComponent(utm)}&utm_campaign=portfolio_booking`;
 
-    if (window.Calendly && typeof window.Calendly.initPopupWidget === "function") {
+    try {
+      await loadCalendlyAssets();
       window.Calendly.initPopupWidget({ url });
-    } else {
+    } catch {
       window.open(url, "_blank", "noopener,noreferrer");
     }
   });
@@ -175,7 +196,6 @@ function initContactForm() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  initPreloader();
   initMobileNav();
   initActiveNav();
   initReveal();

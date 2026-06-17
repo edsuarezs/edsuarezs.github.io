@@ -1,6 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
-@import url("./fonts/fontawesome-free-5.12.1-web/css/all.min.css");
-
 :root {
   --bg: #070b12;
   --bg-soft: #0b111c;
@@ -22,8 +19,8 @@
   --max: 1180px;
   --nav-h: 74px;
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
-  --font: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --mono: "JetBrains Mono", Consolas, monospace;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 }
 
 * {
@@ -179,38 +176,6 @@ p {
 .btn-secondary:hover {
   border-color: var(--mint);
   color: var(--mint);
-}
-
-.preloader {
-  align-items: center;
-  background: var(--bg);
-  display: grid;
-  inset: 0;
-  justify-items: center;
-  position: fixed;
-  transition: opacity 260ms ease, visibility 260ms ease;
-  z-index: 999;
-}
-
-.preloader span {
-  animation: spin 850ms linear infinite;
-  border: 2px solid var(--line);
-  border-radius: 999px;
-  border-top-color: var(--mint);
-  height: 36px;
-  width: 36px;
-}
-
-.preloader.done {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .site-header {
@@ -935,6 +900,11 @@ p {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 520ms ease, transform 520ms ease;
+}
+
+.hero .reveal {
+  opacity: 1;
+  transform: none;
 }
 
 .reveal.visible {

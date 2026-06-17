@@ -150,19 +150,11 @@
       }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://assets.calendly.com" />
     <link rel="preload" as="image" href="assets/images/main_photo.webp" />
     <link rel="stylesheet" href="css/style.css" />
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
   </head>
 
   <body>
-    <div class="preloader" role="status" aria-label="Loading">
-      <span></span>
-    </div>
-
     <header class="site-header">
       <nav class="nav container" aria-label="Primary navigation">
         <a class="brand" href="#top" aria-label="Edward Suarez home">
@@ -223,6 +215,8 @@
               class="profile-photo"
               width="164"
               height="164"
+              fetchpriority="high"
+              decoding="async"
             />
             <div class="terminal-card">
               <p><span>$</span> whoami</p>
@@ -320,7 +314,7 @@
 
           <div class="systems-grid">
             <article class="system-card reveal">
-              <div class="card-icon"><i class="fas fa-code-branch"></i></div>
+              <div class="card-icon" aria-hidden="true">CI</div>
               <h3>Secure CI/CD</h3>
               <p>Pipeline design, quality gates, secrets handling, automated checks and release flows with evidence.</p>
               <ul>
@@ -330,7 +324,7 @@
               </ul>
             </article>
             <article class="system-card reveal reveal-delay-1">
-              <div class="card-icon"><i class="fas fa-cloud"></i></div>
+              <div class="card-icon" aria-hidden="true">CL</div>
               <h3>Cloud Platforms</h3>
               <p>AWS environments designed for scale, cost awareness, security boundaries and predictable operations.</p>
               <ul>
@@ -340,7 +334,7 @@
               </ul>
             </article>
             <article class="system-card reveal reveal-delay-2">
-              <div class="card-icon"><i class="fas fa-cubes"></i></div>
+              <div class="card-icon" aria-hidden="true">K8</div>
               <h3>Kubernetes & OpenShift</h3>
               <p>Container platforms with deployment consistency, service health, policy controls and operational clarity.</p>
               <ul>
@@ -350,7 +344,7 @@
               </ul>
             </article>
             <article class="system-card reveal reveal-delay-3">
-              <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+              <div class="card-icon" aria-hidden="true">SR</div>
               <h3>SRE & Observability</h3>
               <p>Monitoring, tracing, alerting and resilience practices that help teams understand systems before they fail.</p>
               <ul>
@@ -638,10 +632,9 @@
     </footer>
 
     <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top">
-      <i class="fas fa-arrow-up"></i>
+      <span aria-hidden="true">↑</span>
     </button>
 
     <script src="js/app.js" defer></script>
-    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
   </body>
 </html>
