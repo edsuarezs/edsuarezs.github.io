@@ -337,7 +337,7 @@ p {
   padding: 0.35rem 0.7rem;
 }
 
-.hero-meta i {
+.status-dot {
   background: var(--mint);
   border-radius: 50%;
   box-shadow: 0 0 18px var(--mint);

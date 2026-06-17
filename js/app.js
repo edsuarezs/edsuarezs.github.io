@@ -96,14 +96,17 @@ function initCounters() {
 function initBackToTop() {
   const button = $("#back-to-top");
   if (!button) return;
+  const hero = $(".hero");
 
-  function update() {
-    button.classList.toggle("visible", window.scrollY > 720);
+  if (hero && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      ([entry]) => button.classList.toggle("visible", !entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(hero);
   }
 
-  window.addEventListener("scroll", update, { passive: true });
   button.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-  update();
 }
 
 function initCalendly() {
