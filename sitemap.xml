@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://edwardsuarez.com/</loc>
     <lastmod>2026-06-17</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://edwardsuarez.com/assets/images/social-preview.png</image:loc>
-      <image:title>Edward Suarez - Senior DevSecOps Engineer</image:title>
-      <image:caption>Social preview image for Edward Suarez, Senior DevSecOps Engineer specializing in AWS, Kubernetes, OpenShift, Terraform and SRE.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://edwardsuarez.com/assets/images/main_photo.webp</image:loc>
-      <image:title>Edward Suarez</image:title>
-      <image:caption>Edward Suarez, Senior DevSecOps Engineer based in Medellin, Colombia.</image:caption>
-    </image:image>
   </url>
 </urlset>
