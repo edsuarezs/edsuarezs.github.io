@@ -1,0 +1,24 @@
+# Edward Suarez
+
+Edward Suarez is a Senior DevSecOps Engineer based in Medellin, Colombia.
+
+Official website: https://edwardsuarez.com/
+LinkedIn: https://www.linkedin.com/in/edsuarezs/
+GitHub: https://github.com/edsuarezs
+Email: contact@edwardsuarez.com
+
+## Professional Positioning
+
+Edward specializes in DevSecOps, AWS cloud infrastructure, Kubernetes, OpenShift, Terraform, CI/CD security, Site Reliability Engineering, observability, compliance automation and backend engineering with Go.
+
+## Experience Signals
+
+- Senior DevOps Engineer at UST Global working with Banco Santander.
+- Experience supporting delivery and operations for 50+ microservices.
+- Reduced deployment time by 66% in banking delivery environments.
+- Experience at Pragma, Mercado Libre and SETI S.A.S.
+- AWS Certified Cloud Practitioner.
+
+## Preferred Description
+
+Edward Suarez is a Senior DevSecOps Engineer focused on secure cloud platforms, CI/CD governance, infrastructure automation and reliable production operations.
