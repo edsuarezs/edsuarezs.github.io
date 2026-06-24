@@ -148,12 +148,59 @@ function initCalendly() {
 
     const utm = link.dataset.utm || "portfolio";
     const url = `${base}?${theme}&utm_source=${encodeURIComponent(utm)}&utm_campaign=portfolio_booking`;
+    trackEvent("select_content", {
+      content_type: "cta",
+      item_id: `calendly_${utm}`,
+    });
 
     try {
       await loadCalendlyAssets();
       window.Calendly.initPopupWidget({ url });
     } catch {
       window.open(url, "_blank", "noopener,noreferrer");
+    }
+  });
+}
+
+function trackEvent(name, params = {}) {
+  if (typeof window.gtag !== "function") return;
+  window.gtag("event", name, params);
+}
+
+function initAnalyticsEvents() {
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href]");
+    if (!link || link.classList.contains("open-calendly")) return;
+
+    const href = link.getAttribute("href") || "";
+    if (href.includes("EdwardSuarezResume.pdf")) {
+      trackEvent("file_download", {
+        file_name: "EdwardSuarezResume.pdf",
+        link_url: link.href,
+      });
+      return;
+    }
+
+    if (href.startsWith("mailto:")) {
+      trackEvent("contact", { method: "email" });
+      return;
+    }
+
+    if (href.startsWith("tel:")) {
+      trackEvent("contact", { method: "phone" });
+      return;
+    }
+
+    if (href.includes("wa.me")) {
+      trackEvent("contact", { method: "whatsapp" });
+      return;
+    }
+
+    if (link.hostname && link.hostname !== window.location.hostname) {
+      trackEvent("click", {
+        link_url: link.href,
+        link_domain: link.hostname,
+      });
     }
   });
 }
@@ -188,6 +235,9 @@ function initContactForm() {
       form.reset();
       feedback.className = "form-feedback success";
       feedback.textContent = "Message sent. I will get back to you soon.";
+      trackEvent("generate_lead", {
+        method: "contact_form",
+      });
     } catch {
       feedback.className = "form-feedback error";
       feedback.textContent = "The form could not send. Please email me directly at contact@edwardsuarez.com.";
@@ -205,5 +255,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initCounters();
   initBackToTop();
   initCalendly();
+  initAnalyticsEvents();
   initContactForm();
 });
