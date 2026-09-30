@@ -1,28 +1,18 @@
 # Edward Suarez
 
-Edward Suarez is a DevOps and SRE engineer based in Medellín, Colombia.
-His technology career began in November 2020.
+DevOps & SRE engineer based in Medellín, Colombia. Technology career since November 2020.
 
-## Professional experience
-- UST / Banco Santander: Developer III – DevOps Engineering, focused on production releases, pipeline operations, application monitoring and incident support.
-- Pragma / Bancolombia: automation and implementation of reliability practices, including Golden Signals, SLA/SLI/SLO, critical paths, Dynatrace configuration and chaos engineering activities.
-- Mercado Libre: previous professional backend development experience with Go.
-- SETI: participation in on-premises-to-AWS migrations using existing templates and frameworks.
-- Almícava (Integ.ro): environment setup, Bash automation, deployments, incident support and backup restoration.
+- UST / Banco Santander: Nov 2024 – Present. Production releases, monitoring and Bash automation for incident response at Banco Santander.
+- Pragma / Bancolombia: Aug 2023 – Nov 2024. Automation and implementation of SRE practices for Sucursal Virtual Personas and Mi Bancolombia.
+- Mercado Libre: Nov 2021 – May 2023. Professional backend development in Go.
+- SETI: Aug 2021 – Nov 2021. AWS migration work spanning project configuration, connectivity and identity.
+- Almícava (Integ.ro): Nov 2020 – Aug 2021. Bash automation, environment setup, production deployments and recovery from backups.
 
-## Independent project
-Coravit is a current independent business and engineering project developed with substantial AI assistance. Its monitoring implementation with Prometheus and Grafana was largely AI-generated.
+Certification: AWS Certified Cloud Practitioner.
+Coravit: independent business and engineering project with substantial AI assistance.
 
-## Certification
-AWS Certified Cloud Practitioner.
-
-## Current development
-Cloud and platform engineering foundations, Terraform, Kubernetes and programming.
-
-## Links
-- [Website](https://edwardsuarez.com/)
-- [LinkedIn](https://www.linkedin.com/in/edsuarezs/)
-- [GitHub](https://github.com/edsuarezs)
-- [Coravit](https://coravit.co/)
-- [AWS credential](https://www.credly.com/badges/b57cf904-0e96-4559-a6ba-cb1ecd15b4c3)
+- [Profile](https://edwardsuarez.com/)
+- [Bancolombia case](https://edwardsuarez.com/portfolio-3.html)
+- [Santander case](https://edwardsuarez.com/portfolio-2.html)
 - [Resume](https://edwardsuarez.com/assets/EdwardSuarezResume.pdf)
+- [LinkedIn](https://www.linkedin.com/in/edsuarezs/)
