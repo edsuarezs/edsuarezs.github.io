@@ -62,37 +62,6 @@ function initReveal() {
   items.forEach((item) => observer.observe(item));
 }
 
-function initCounters() {
-  const counters = $$(".metric-number[data-count]");
-  if (!counters.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        observer.unobserve(entry.target);
-
-        const el = entry.target;
-        const target = Number(el.dataset.count || 0);
-        const start = performance.now();
-        const duration = 1200;
-
-        function tick(now) {
-          const progress = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = String(Math.round(target * eased));
-          if (progress < 1) requestAnimationFrame(tick);
-        }
-
-        requestAnimationFrame(tick);
-      });
-    },
-    { threshold: 0.6 }
-  );
-
-  counters.forEach((counter) => observer.observe(counter));
-}
-
 function initBackToTop() {
   const button = $("#back-to-top");
   if (!button) return;
@@ -107,59 +76,6 @@ function initBackToTop() {
   }
 
   button.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-}
-
-function initCalendly() {
-  const base = "https://calendly.com/edsuarez0299/1-1-technical-consultation";
-  const theme = "background_color=070b12&text_color=eef4f8&primary_color=3ee6b5";
-  let loadingPromise = null;
-
-  function loadCalendlyAssets() {
-    if (window.Calendly && typeof window.Calendly.initPopupWidget === "function") {
-      return Promise.resolve();
-    }
-
-    if (loadingPromise) return loadingPromise;
-
-    loadingPromise = new Promise((resolve, reject) => {
-      if (!document.querySelector("link[data-calendly-css]")) {
-        const css = document.createElement("link");
-        css.rel = "stylesheet";
-        css.href = "https://assets.calendly.com/assets/external/widget.css";
-        css.dataset.calendlyCss = "true";
-        document.head.appendChild(css);
-      }
-
-      const script = document.createElement("script");
-      script.src = "https://assets.calendly.com/assets/external/widget.js";
-      script.async = true;
-      script.onload = () => resolve();
-      script.onerror = () => reject(new Error("Calendly failed to load"));
-      document.head.appendChild(script);
-    });
-
-    return loadingPromise;
-  }
-
-  document.addEventListener("click", async (event) => {
-    const link = event.target.closest(".open-calendly");
-    if (!link) return;
-    event.preventDefault();
-
-    const utm = link.dataset.utm || "portfolio";
-    const url = `${base}?${theme}&utm_source=${encodeURIComponent(utm)}&utm_campaign=portfolio_booking`;
-    trackEvent("select_content", {
-      content_type: "cta",
-      item_id: `calendly_${utm}`,
-    });
-
-    try {
-      await loadCalendlyAssets();
-      window.Calendly.initPopupWidget({ url });
-    } catch {
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
-  });
 }
 
 function trackEvent(name, params = {}) {
@@ -252,9 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileNav();
   initActiveNav();
   initReveal();
-  initCounters();
   initBackToTop();
-  initCalendly();
   initAnalyticsEvents();
   initContactForm();
 });
