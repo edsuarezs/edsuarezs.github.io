@@ -1,6 +1,6 @@
 # Edward Suarez
 
-DevOps & SRE engineer based in Medellín, Colombia. Technology career since November 2020.
+DevOps & SRE engineer based in Medellín, Colombia (UTC-5), open to remote roles. Technology career since November 2020.
 
 - UST / Banco Santander: Nov 2024 – Present. Production releases, monitoring and Bash automation for incident response at Banco Santander.
 - Pragma / Bancolombia: Aug 2023 – Nov 2024. Automation and implementation of SRE practices for Sucursal Virtual Personas and Mi Bancolombia.
@@ -8,8 +8,8 @@ DevOps & SRE engineer based in Medellín, Colombia. Technology career since Nove
 - SETI: Aug 2021 – Nov 2021. AWS migration work spanning project configuration, connectivity and identity.
 - Almícava (Integ.ro): Nov 2020 – Aug 2021. Bash automation, environment setup, production deployments and recovery from backups.
 
-Certification: AWS Certified Cloud Practitioner.
-Coravit: independent business and engineering project with substantial AI assistance.
+Certifications: AWS Certified Cloud Practitioner; Claude Certified Developer - Foundations (Anthropic).
+Coravit: independent ecommerce project built with AI-assisted engineering.
 
 - [Profile](https://edwardsuarez.com/)
 - [Bancolombia case](https://edwardsuarez.com/portfolio-3.html)
